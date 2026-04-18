@@ -37,7 +37,7 @@ def run_server_node():
     # Actually run Uvicorn manually here or rely on the pipeline.
     # The requirement said to isolate components.
     ota_cmd = [sys.executable, "-m", "uvicorn", "server.ota_server:app", "--host", OTA_SERVER_HOST, "--port", str(OTA_SERVER_PORT)]
-    dash_cmd = [sys.executable, "-m", "uvicorn", "dashboard.app:app", "--host", "0.0.0.0", "--port", "8001"]
+    dash_cmd = [sys.executable, "-m", "uvicorn", "dashboard.app:app", "--host", "0.0.0.0", "--port", "7001"]
     
     ota_p = subprocess.Popen(ota_cmd, env=env)
     dash_p = subprocess.Popen(dash_cmd, env=env)

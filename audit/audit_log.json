@@ -1,0 +1,4648 @@
+[
+  {
+    "update_session_timestamp": "2026-04-18T09:10:29.000960+00:00",
+    "events": [
+      {
+        "timestamp": "2026-04-18T09:10:29.000960+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Starting OTA update to version v2.0.0",
+        "event_type": "ota_start",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.003470+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "ECDH session securely established between OTA Server and VEH-1",
+        "event_type": "ecdh_session_established",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.026117+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.035705+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.045998+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.055039+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.063878+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.076097+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.089962+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.083007+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.097470+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.106929+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.112566+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Initializing robust Chunk Management Zone.",
+        "event_type": "chunk_download_started"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.122732+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.126861+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 0",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.127859+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 0",
+        "event_type": "chunk_verified",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.130860+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 1",
+        "event_type": "chunk_pending",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.114923+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 0",
+        "event_type": "chunk_pending",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.137721+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.141238+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 1",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.144270+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 1",
+        "event_type": "chunk_verified",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.146534+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 2",
+        "event_type": "chunk_pending",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.154308+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.159218+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 2",
+        "event_type": "chunk_verified",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.156806+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 2",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.160216+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 3",
+        "event_type": "chunk_pending",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.165845+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.170022+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 3",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.172027+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 3",
+        "event_type": "chunk_verified",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.174025+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 4",
+        "event_type": "chunk_pending",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.181945+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.185456+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 4",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.186470+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 4",
+        "event_type": "chunk_verified",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.188469+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 5",
+        "event_type": "chunk_pending",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.196197+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.199717+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 5",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.200719+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 6",
+        "event_type": "chunk_pending",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.199717+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 5",
+        "event_type": "chunk_verified",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.207782+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.211375+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 6",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.212377+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 6",
+        "event_type": "chunk_verified",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.214887+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 7",
+        "event_type": "chunk_pending",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.224581+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.230379+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 7",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.231455+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 7",
+        "event_type": "chunk_verified",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.234616+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 8",
+        "event_type": "chunk_pending",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.241801+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.247192+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 8",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.248701+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 8",
+        "event_type": "chunk_verified",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.251014+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 9",
+        "event_type": "chunk_pending",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.261093+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.266635+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 9",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.268145+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 9",
+        "event_type": "chunk_verified",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.273420+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Evaluating safety interlocks for install...",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:29.273420+00:00",
+        "level": "WARNING",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Installation blocked: Battery below 70%",
+        "event_type": "safety_block",
+        "device_id": "VEH-1"
+      }
+    ]
+  },
+  {
+    "update_session_timestamp": "2026-04-18T09:10:31.277229+00:00",
+    "events": [
+      {
+        "timestamp": "2026-04-18T09:10:31.277229+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Starting OTA update to version v2.0.0",
+        "event_type": "ota_start",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.278239+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "ECDH session securely established between OTA Server and VEH-1",
+        "event_type": "ecdh_session_established",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.292417+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.311819+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.303074+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.327101+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.334695+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.320016+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.343349+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.362448+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.370204+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.354404+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.374174+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 0",
+        "event_type": "chunk_pending",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.374174+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Initializing robust Chunk Management Zone.",
+        "event_type": "chunk_download_started"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.383227+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.388275+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 0",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.388275+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 0",
+        "event_type": "chunk_verified",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.390126+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 1",
+        "event_type": "chunk_pending",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.399144+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.403157+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 1",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.403668+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 1",
+        "event_type": "chunk_verified",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.405201+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 2",
+        "event_type": "chunk_pending",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.412215+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.415745+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 2",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.416745+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 2",
+        "event_type": "chunk_verified",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.417745+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 3",
+        "event_type": "chunk_pending",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.425050+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.428580+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 3",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.429584+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 3",
+        "event_type": "chunk_verified",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.431620+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 4",
+        "event_type": "chunk_pending",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.436124+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.439136+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 4",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.440136+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 4",
+        "event_type": "chunk_verified",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.441661+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 5",
+        "event_type": "chunk_pending",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.447928+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.450450+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 5",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.451466+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 5",
+        "event_type": "chunk_verified",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.452470+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 6",
+        "event_type": "chunk_pending",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.459091+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.464092+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 6",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.465636+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 6",
+        "event_type": "chunk_verified",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.466620+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 7",
+        "event_type": "chunk_pending",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.473172+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.478491+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 7",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.479493+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 7",
+        "event_type": "chunk_verified",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.480491+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 8",
+        "event_type": "chunk_pending",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.487602+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.491126+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 8",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.492636+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 8",
+        "event_type": "chunk_verified",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.493648+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 9",
+        "event_type": "chunk_pending",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.500704+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.505598+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 9",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.506689+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 9",
+        "event_type": "chunk_verified",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.508887+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Evaluating safety interlocks for install...",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.511707+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Installation proceeding... Flashing NAND.",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.515125+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Physically verified binary blocks in-memory. Output file materialization disabled.",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:10:31.516327+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Installation completed successfully.",
+        "event_type": "install_success",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.280647+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "ECDH session securely established between OTA Server and VEH-1",
+        "event_type": "ecdh_session_established",
+        "device_id": "VEH-1"
+      }
+    ]
+  },
+  {
+    "update_session_timestamp": "2026-04-18T09:20:33.278092+00:00",
+    "events": [
+      {
+        "timestamp": "2026-04-18T09:20:33.278092+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Starting OTA update to version v2.0.0",
+        "event_type": "ota_start",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.297648+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.307059+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.312510+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.322520+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.330702+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.338745+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.345588+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.352610+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.364910+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.359281+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.369256+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Initializing robust Chunk Management Zone.",
+        "event_type": "chunk_download_started"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.369256+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 0",
+        "event_type": "chunk_pending",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.374685+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.378122+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 0",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.379636+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 0",
+        "event_type": "chunk_verified",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.381160+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 1",
+        "event_type": "chunk_pending",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.385679+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.389690+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 1",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.392732+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 2",
+        "event_type": "chunk_pending",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.390203+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 1",
+        "event_type": "chunk_verified",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.398273+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.401790+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 2",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.404315+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 3",
+        "event_type": "chunk_pending",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.401790+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 2",
+        "event_type": "chunk_verified",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.409843+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.413845+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 3",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.415870+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 4",
+        "event_type": "chunk_pending",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.414357+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 3",
+        "event_type": "chunk_verified",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.420908+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.425909+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 4",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.427442+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 4",
+        "event_type": "chunk_verified",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.429435+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 5",
+        "event_type": "chunk_pending",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.433846+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.438874+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 5",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.438874+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 5",
+        "event_type": "chunk_verified",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.441402+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 6",
+        "event_type": "chunk_pending",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.447253+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.451266+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 6",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.451266+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 6",
+        "event_type": "chunk_verified",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.453265+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 7",
+        "event_type": "chunk_pending",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.458692+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.462692+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 7",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.463694+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 7",
+        "event_type": "chunk_verified",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.465214+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 8",
+        "event_type": "chunk_pending",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.470256+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.472254+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 8",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.473254+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 8",
+        "event_type": "chunk_verified",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.474252+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 9",
+        "event_type": "chunk_pending",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.480817+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.483832+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 9",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.485343+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 9",
+        "event_type": "chunk_verified",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.487354+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Evaluating safety interlocks for install...",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:33.488360+00:00",
+        "level": "WARNING",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Installation blocked: Battery below 70%",
+        "event_type": "safety_block",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.495715+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "ECDH session securely established between OTA Server and VEH-1",
+        "event_type": "ecdh_session_established",
+        "device_id": "VEH-1"
+      }
+    ]
+  },
+  {
+    "update_session_timestamp": "2026-04-18T09:20:35.493705+00:00",
+    "events": [
+      {
+        "timestamp": "2026-04-18T09:20:35.493705+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Starting OTA update to version v2.0.0",
+        "event_type": "ota_start",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.530093+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.511599+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.521019+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.541722+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.551832+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.559922+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.566844+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.574060+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.581103+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.587647+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.592678+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Initializing robust Chunk Management Zone.",
+        "event_type": "chunk_download_started"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.593691+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 0",
+        "event_type": "chunk_pending",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.598757+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.603276+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 0",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.604293+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 0",
+        "event_type": "chunk_verified",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.605807+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 1",
+        "event_type": "chunk_pending",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.611162+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.614969+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 1",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.615980+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 1",
+        "event_type": "chunk_verified",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.617495+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 2",
+        "event_type": "chunk_pending",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.622242+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.627173+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 2",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.627173+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 2",
+        "event_type": "chunk_verified",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.629174+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 3",
+        "event_type": "chunk_pending",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.634706+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.638208+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 3",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.639725+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 3",
+        "event_type": "chunk_verified",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.640736+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 4",
+        "event_type": "chunk_pending",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.647191+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.651204+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 4",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.651204+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 4",
+        "event_type": "chunk_verified",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.653205+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 5",
+        "event_type": "chunk_pending",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.659323+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.661851+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 5",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.661851+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 5",
+        "event_type": "chunk_verified",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.663848+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 6",
+        "event_type": "chunk_pending",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.669397+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.672408+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 6",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.673406+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 6",
+        "event_type": "chunk_verified",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.674408+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 7",
+        "event_type": "chunk_pending",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.678931+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.682452+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 7",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.683457+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 7",
+        "event_type": "chunk_verified",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.685452+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 8",
+        "event_type": "chunk_pending",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.690008+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.693537+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 8",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.693537+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 8",
+        "event_type": "chunk_verified",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.695536+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 9",
+        "event_type": "chunk_pending",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.701059+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.703575+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 9",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.703575+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 9",
+        "event_type": "chunk_verified",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.706205+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Evaluating safety interlocks for install...",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.707204+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Installation proceeding... Flashing NAND.",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.709360+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Physically verified binary blocks in-memory. Output file materialization disabled.",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:35.711364+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Installation completed successfully.",
+        "event_type": "install_success",
+        "device_id": "VEH-1"
+      }
+    ]
+  },
+  {
+    "update_session_timestamp": "2026-04-18T09:20:57.514119+00:00",
+    "events": [
+      {
+        "timestamp": "2026-04-18T09:20:57.514119+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Starting OTA update to version v2.0.0",
+        "event_type": "ota_start",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.515621+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "ECDH session securely established between OTA Server and VEH-1",
+        "event_type": "ecdh_session_established",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.531863+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.544057+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.554209+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.562492+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.588565+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.600768+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.610799+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.619065+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.628932+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.638711+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.647820+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Initializing robust Chunk Management Zone.",
+        "event_type": "chunk_download_started"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.649080+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 0",
+        "event_type": "chunk_pending",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.653592+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.658263+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 0",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.659260+00:00",
+        "level": "WARNING",
+        "logger": "mitm_attacker",
+        "message": "MITM Attack: Corrupting chunk 0 via bitflip",
+        "event_type": "attack_active"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.660341+00:00",
+        "level": "ERROR",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "CHUNK_FAIL \u2014 chunk_id: 0 \u2014 SHA3-256 mismatch detected",
+        "event_type": "chunk_corrupted",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.662793+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 1",
+        "event_type": "chunk_pending",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.669644+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.673114+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 1",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.674546+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 1",
+        "event_type": "chunk_verified",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.676083+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 2",
+        "event_type": "chunk_pending",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.682767+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.688063+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 2",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.688063+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 2",
+        "event_type": "chunk_verified",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.690948+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 3",
+        "event_type": "chunk_pending",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.699122+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.704132+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 3",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.705132+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 3",
+        "event_type": "chunk_verified",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.707300+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 4",
+        "event_type": "chunk_pending",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.713636+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.718693+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 4",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.718693+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 4",
+        "event_type": "chunk_verified",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.720151+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 5",
+        "event_type": "chunk_pending",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.726042+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.730572+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 5",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.730572+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 5",
+        "event_type": "chunk_verified",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.733117+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 6",
+        "event_type": "chunk_pending",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.738277+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.742322+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 6",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.743344+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 6",
+        "event_type": "chunk_verified",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.744337+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 7",
+        "event_type": "chunk_pending",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.749974+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.754055+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 7",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.755573+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 7",
+        "event_type": "chunk_verified",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.759585+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 8",
+        "event_type": "chunk_pending",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.765579+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.770162+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 8",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.771174+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 8",
+        "event_type": "chunk_verified",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.772180+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 9",
+        "event_type": "chunk_pending",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.778834+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.784378+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 9",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:20:57.785889+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 9",
+        "event_type": "chunk_verified",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:20:58.788504+00:00",
+        "level": "WARNING",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "retransmit_requested \u2014 chunk_id: 0",
+        "event_type": "chunk_retransmission_requested",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:20:58.795649+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:58.799958+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Retransmitted chunk 0 downloaded",
+        "event_type": "chunk_retransmission_success",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:20:58.804279+00:00",
+        "level": "INFO",
+        "logger": "mitm_attacker",
+        "message": "MITM Attack abated for chunk 0 on retry.",
+        "event_type": "attack_abated"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:58.805298+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 0",
+        "event_type": "chunk_verified",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:20:58.810598+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Evaluating safety interlocks for install...",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:20:58.812490+00:00",
+        "level": "WARNING",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Installation blocked: Battery below 70%",
+        "event_type": "safety_block",
+        "device_id": "VEH-1"
+      }
+    ]
+  },
+  {
+    "update_session_timestamp": "2026-04-18T09:21:00.816513+00:00",
+    "events": [
+      {
+        "timestamp": "2026-04-18T09:21:00.816513+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Starting OTA update to version v2.0.0",
+        "event_type": "ota_start",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.818949+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "ECDH session securely established between OTA Server and VEH-1",
+        "event_type": "ecdh_session_established",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.840123+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.855480+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.870106+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.884279+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.896260+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.906670+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.916400+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.926074+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.938290+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.950483+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.957419+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Initializing robust Chunk Management Zone.",
+        "event_type": "chunk_download_started"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.957977+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 0",
+        "event_type": "chunk_pending",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.967737+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.972500+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 0",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.974013+00:00",
+        "level": "WARNING",
+        "logger": "mitm_attacker",
+        "message": "MITM Attack: Corrupting chunk 0 via bitflip",
+        "event_type": "attack_active"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.976028+00:00",
+        "level": "ERROR",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "CHUNK_FAIL \u2014 chunk_id: 0 \u2014 SHA3-256 mismatch detected",
+        "event_type": "chunk_corrupted",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.978553+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 1",
+        "event_type": "chunk_pending",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.987131+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.993039+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 1",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.994057+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 1",
+        "event_type": "chunk_verified",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:21:00.996571+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 2",
+        "event_type": "chunk_pending",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.005280+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.012093+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 2",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.013095+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 2",
+        "event_type": "chunk_verified",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.015511+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 3",
+        "event_type": "chunk_pending",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.024763+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.029308+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 3",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.030824+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 3",
+        "event_type": "chunk_verified",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.032841+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 4",
+        "event_type": "chunk_pending",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.040985+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.045512+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 4",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.047043+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 4",
+        "event_type": "chunk_verified",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.050053+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 5",
+        "event_type": "chunk_pending",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.057482+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.062498+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 5",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.062498+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 5",
+        "event_type": "chunk_verified",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.065512+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 6",
+        "event_type": "chunk_pending",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.072737+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.077833+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 6",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.079049+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 6",
+        "event_type": "chunk_verified",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.082555+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 7",
+        "event_type": "chunk_pending",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.089783+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.094777+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 7",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.095792+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 7",
+        "event_type": "chunk_verified",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.097448+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 8",
+        "event_type": "chunk_pending",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.106540+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.110587+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 8",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.110587+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 8",
+        "event_type": "chunk_verified",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.113715+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 9",
+        "event_type": "chunk_pending",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.122339+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.126364+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 9",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:21:01.127371+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 9",
+        "event_type": "chunk_verified",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:21:02.130788+00:00",
+        "level": "WARNING",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "retransmit_requested \u2014 chunk_id: 0",
+        "event_type": "chunk_retransmission_requested",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:21:02.140440+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:02.149509+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Retransmitted chunk 0 downloaded",
+        "event_type": "chunk_retransmission_success",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:21:02.149509+00:00",
+        "level": "INFO",
+        "logger": "mitm_attacker",
+        "message": "MITM Attack abated for chunk 0 on retry.",
+        "event_type": "attack_abated"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:02.154350+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 0",
+        "event_type": "chunk_verified",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:21:02.160345+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Evaluating safety interlocks for install...",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:02.161952+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Installation proceeding... Flashing NAND.",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:02.166704+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Physically verified binary blocks in-memory. Output file materialization disabled.",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:02.170939+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Installation completed successfully.",
+        "event_type": "install_success",
+        "device_id": "VEH-1"
+      }
+    ]
+  },
+  {
+    "update_session_timestamp": "2026-04-18T09:21:24.482842+00:00",
+    "events": [
+      {
+        "timestamp": "2026-04-18T09:21:24.482842+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Starting OTA update to version v2.0.0",
+        "event_type": "ota_start",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.485903+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "ECDH session securely established between OTA Server and VEH-1",
+        "event_type": "ecdh_session_established",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.510761+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.522084+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.534441+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.544998+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.553608+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.564423+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.572965+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.581689+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.592319+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.604771+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.611613+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Initializing robust Chunk Management Zone.",
+        "event_type": "chunk_download_started"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.613126+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 0",
+        "event_type": "chunk_pending",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.620972+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.626505+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 0",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.628510+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 0",
+        "event_type": "chunk_verified",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.632041+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 1",
+        "event_type": "chunk_pending",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.645921+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.651998+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 1",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.653520+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 1",
+        "event_type": "chunk_verified",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.657195+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 2",
+        "event_type": "chunk_pending",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.665138+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.671737+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 2",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.672753+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 2",
+        "event_type": "chunk_verified",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.675754+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 3",
+        "event_type": "chunk_pending",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.688162+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.694967+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 3",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.694967+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 3",
+        "event_type": "chunk_verified",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.697986+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 4",
+        "event_type": "chunk_pending",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.708725+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.714256+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 4",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.716274+00:00",
+        "level": "WARNING",
+        "logger": "mitm_attacker",
+        "message": "MITM Attack: Corrupting chunk 4 via bitflip",
+        "event_type": "attack_active"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.719804+00:00",
+        "level": "ERROR",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "CHUNK_FAIL \u2014 chunk_id: 4 \u2014 SHA3-256 mismatch detected",
+        "event_type": "chunk_corrupted",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.722809+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 5",
+        "event_type": "chunk_pending",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.734023+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.739770+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 5",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.741785+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 5",
+        "event_type": "chunk_verified",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.744323+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 6",
+        "event_type": "chunk_pending",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.754566+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.763930+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 6",
+        "event_type": "chunk_verified",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.761902+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 6",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.767708+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 7",
+        "event_type": "chunk_pending",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.777460+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.783692+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 7",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.786298+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 7",
+        "event_type": "chunk_verified",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.790113+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 8",
+        "event_type": "chunk_pending",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.798215+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.805535+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 8",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.806551+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 8",
+        "event_type": "chunk_verified",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.811473+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 9",
+        "event_type": "chunk_pending",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.818251+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.826031+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 9",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:21:24.827052+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 9",
+        "event_type": "chunk_verified",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:21:25.830472+00:00",
+        "level": "WARNING",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "retransmit_requested \u2014 chunk_id: 4",
+        "event_type": "chunk_retransmission_requested",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:21:25.844112+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:25.858827+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Retransmitted chunk 4 downloaded",
+        "event_type": "chunk_retransmission_success",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:21:25.861821+00:00",
+        "level": "INFO",
+        "logger": "mitm_attacker",
+        "message": "MITM Attack abated for chunk 4 on retry.",
+        "event_type": "attack_abated"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:25.866385+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 4",
+        "event_type": "chunk_verified",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:21:25.876448+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Evaluating safety interlocks for install...",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:25.883574+00:00",
+        "level": "WARNING",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Installation blocked: Battery below 70%",
+        "event_type": "safety_block",
+        "device_id": "VEH-1"
+      }
+    ]
+  },
+  {
+    "update_session_timestamp": "2026-04-18T09:21:27.894190+00:00",
+    "events": [
+      {
+        "timestamp": "2026-04-18T09:21:27.894190+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Starting OTA update to version v2.0.0",
+        "event_type": "ota_start",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:27.896192+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "ECDH session securely established between OTA Server and VEH-1",
+        "event_type": "ecdh_session_established",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:27.962602+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:27.991450+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.029260+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.061001+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.090306+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.130592+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.160718+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.185624+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.217402+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.261886+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.275988+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Initializing robust Chunk Management Zone.",
+        "event_type": "chunk_download_started"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.279835+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 0",
+        "event_type": "chunk_pending",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.302165+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.312417+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 0",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.316723+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 0",
+        "event_type": "chunk_verified",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.327667+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 1",
+        "event_type": "chunk_pending",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.349434+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.360667+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 1",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.364186+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 1",
+        "event_type": "chunk_verified",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.371012+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 2",
+        "event_type": "chunk_pending",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.388329+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.396758+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 2",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.402788+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 2",
+        "event_type": "chunk_verified",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.412326+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 3",
+        "event_type": "chunk_pending",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.428499+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.441865+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 3",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.447456+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 3",
+        "event_type": "chunk_verified",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.453555+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 4",
+        "event_type": "chunk_pending",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.483227+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.503405+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 4",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.506897+00:00",
+        "level": "WARNING",
+        "logger": "mitm_attacker",
+        "message": "MITM Attack: Corrupting chunk 4 via bitflip",
+        "event_type": "attack_active"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.521111+00:00",
+        "level": "ERROR",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "CHUNK_FAIL \u2014 chunk_id: 4 \u2014 SHA3-256 mismatch detected",
+        "event_type": "chunk_corrupted",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.525964+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 5",
+        "event_type": "chunk_pending",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.542313+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.565208+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 5",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.568495+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 5",
+        "event_type": "chunk_verified",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.574512+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 6",
+        "event_type": "chunk_pending",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.613096+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.650846+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 6",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.662033+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 7",
+        "event_type": "chunk_pending",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.656021+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 6",
+        "event_type": "chunk_verified",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.687061+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.733206+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 7",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.745982+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 7",
+        "event_type": "chunk_verified",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.771399+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 8",
+        "event_type": "chunk_pending",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.788202+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.826526+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 8",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.834060+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 8",
+        "event_type": "chunk_verified",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.842626+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 9",
+        "event_type": "chunk_pending",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.862745+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.875833+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 9",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:21:28.878853+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 9",
+        "event_type": "chunk_verified",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.273722+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "ECDH session securely established between OTA Server and VEH-1",
+        "event_type": "ecdh_session_established",
+        "device_id": "VEH-1"
+      }
+    ]
+  },
+  {
+    "update_session_timestamp": "2026-04-18T09:21:52.271723+00:00",
+    "events": [
+      {
+        "timestamp": "2026-04-18T09:21:52.271723+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Starting OTA update to version v2.0.0",
+        "event_type": "ota_start",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.288735+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.297389+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.307360+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.315272+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.326012+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.333389+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.342385+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.351775+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.362430+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.382993+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.404914+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Initializing robust Chunk Management Zone.",
+        "event_type": "chunk_download_started"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.431326+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 0",
+        "event_type": "chunk_pending",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.460304+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.491079+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 0",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.497433+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 0",
+        "event_type": "chunk_verified",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.505346+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 1",
+        "event_type": "chunk_pending",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.512010+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.518037+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 1",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.519363+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 1",
+        "event_type": "chunk_verified",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.523643+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 2",
+        "event_type": "chunk_pending",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.532005+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.539361+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 2",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.540919+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 2",
+        "event_type": "chunk_verified",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.542477+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 3",
+        "event_type": "chunk_pending",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.552483+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.558109+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 3",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.560596+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 3",
+        "event_type": "chunk_verified",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.562993+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 4",
+        "event_type": "chunk_pending",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.570994+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.576522+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 4",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.576522+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 4",
+        "event_type": "chunk_verified",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.579983+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 5",
+        "event_type": "chunk_pending",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.586569+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.591104+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 5",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.591104+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 5",
+        "event_type": "chunk_verified",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.592614+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 6",
+        "event_type": "chunk_pending",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.599219+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.605078+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 6",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.606982+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 6",
+        "event_type": "chunk_verified",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.608995+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 7",
+        "event_type": "chunk_pending",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.617352+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.624067+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 7",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.624067+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 7",
+        "event_type": "chunk_verified",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.626605+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 8",
+        "event_type": "chunk_pending",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.634146+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.640184+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 8",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.642729+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 8",
+        "event_type": "chunk_verified",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.644122+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 9",
+        "event_type": "chunk_pending",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.653196+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.657959+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 9",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.658959+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 9",
+        "event_type": "chunk_verified",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.661955+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Evaluating safety interlocks for install...",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:52.665385+00:00",
+        "level": "WARNING",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Installation blocked: Battery below 70%",
+        "event_type": "safety_block",
+        "device_id": "VEH-1"
+      }
+    ]
+  },
+  {
+    "update_session_timestamp": "2026-04-18T09:21:54.668563+00:00",
+    "events": [
+      {
+        "timestamp": "2026-04-18T09:21:54.668563+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Starting OTA update to version v2.0.0",
+        "event_type": "ota_start",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:54.695290+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "ECDH session securely established between OTA Server and VEH-1",
+        "event_type": "ecdh_session_established",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:54.802626+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:54.872644+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:54.930861+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:54.989096+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:55.056197+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:55.113583+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:55.172508+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:55.232331+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:55.313017+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:21:55.349803+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      }
+    ]
+  },
+  {
+    "update_session_timestamp": "2026-04-18T09:22:33.143643+00:00",
+    "events": [
+      {
+        "timestamp": "2026-04-18T09:22:33.143643+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Starting OTA update to version v2.0.0",
+        "event_type": "ota_start",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:33.145642+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "ECDH session securely established between OTA Server and VEH-1",
+        "event_type": "ecdh_session_established",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:33.155422+00:00",
+        "level": "CRITICAL",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "MANIFEST SIGNATURE VERIFICATION FAILED. Origin untrusted or payload tampered.",
+        "event_type": "signature_failure",
+        "device_id": "VEH-1"
+      }
+    ]
+  },
+  {
+    "update_session_timestamp": "2026-04-18T09:22:35.157611+00:00",
+    "events": [
+      {
+        "timestamp": "2026-04-18T09:22:35.157611+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Starting OTA update to version v2.0.0",
+        "event_type": "ota_start",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:35.159662+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "ECDH session securely established between OTA Server and VEH-1",
+        "event_type": "ecdh_session_established",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:35.175646+00:00",
+        "level": "CRITICAL",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "MANIFEST SIGNATURE VERIFICATION FAILED. Origin untrusted or payload tampered.",
+        "event_type": "signature_failure",
+        "device_id": "VEH-1"
+      }
+    ]
+  },
+  {
+    "update_session_timestamp": "2026-04-18T09:22:57.331753+00:00",
+    "events": [
+      {
+        "timestamp": "2026-04-18T09:22:57.331753+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Starting OTA update to version v2.0.0",
+        "event_type": "ota_start",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.335747+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "ECDH session securely established between OTA Server and VEH-1",
+        "event_type": "ecdh_session_established",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.357046+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.366713+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.375743+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.385713+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.396690+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.406981+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.416002+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.424522+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.434180+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.443135+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.448940+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Initializing robust Chunk Management Zone.",
+        "event_type": "chunk_download_started"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.450512+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 0",
+        "event_type": "chunk_pending",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.457963+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.466853+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 0",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.467852+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 0",
+        "event_type": "chunk_verified",
+        "chunk_id": 0
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.469886+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 1",
+        "event_type": "chunk_pending",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.479279+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.484816+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 1",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.485814+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 1",
+        "event_type": "chunk_verified",
+        "chunk_id": 1
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.488265+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 2",
+        "event_type": "chunk_pending",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.495324+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.499875+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 2",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.502011+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 2",
+        "event_type": "chunk_verified",
+        "chunk_id": 2
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.505564+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 3",
+        "event_type": "chunk_pending",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.512975+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.519370+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 3",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.520386+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 3",
+        "event_type": "chunk_verified",
+        "chunk_id": 3
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.522880+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 4",
+        "event_type": "chunk_pending",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.527958+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.532630+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 4",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.533637+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 4",
+        "event_type": "chunk_verified",
+        "chunk_id": 4
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.536142+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 5",
+        "event_type": "chunk_pending",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.542492+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.548544+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 5",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.549738+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 5",
+        "event_type": "chunk_verified",
+        "chunk_id": 5
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.551758+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 6",
+        "event_type": "chunk_pending",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.557368+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.562251+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 6",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.564780+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 6",
+        "event_type": "chunk_verified",
+        "chunk_id": 6
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.566779+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 7",
+        "event_type": "chunk_pending",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.573226+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.577313+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 7",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.578422+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 7",
+        "event_type": "chunk_verified",
+        "chunk_id": 7
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.579437+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 8",
+        "event_type": "chunk_pending",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.586609+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.591041+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 8",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.592552+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 8",
+        "event_type": "chunk_verified",
+        "chunk_id": 8
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.593562+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "pending \u2014 chunk_id: 9",
+        "event_type": "chunk_pending",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.600121+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.605301+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Downloaded chunk 9",
+        "event_type": "chunk_downloaded",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.606544+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "VERIFIED \u2014 chunk_id: 9",
+        "event_type": "chunk_verified",
+        "chunk_id": 9
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.608564+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Evaluating safety interlocks for install...",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:57.609565+00:00",
+        "level": "WARNING",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Installation blocked: Battery below 70%",
+        "event_type": "safety_block",
+        "device_id": "VEH-1"
+      }
+    ]
+  },
+  {
+    "update_session_timestamp": "2026-04-18T09:22:59.612351+00:00",
+    "events": [
+      {
+        "timestamp": "2026-04-18T09:22:59.612351+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Starting OTA update to version v2.0.0",
+        "event_type": "ota_start",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:59.650199+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "ECDH session securely established between OTA Server and VEH-1",
+        "event_type": "ecdh_session_established",
+        "device_id": "VEH-1"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:59.773807+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 0",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:59.842806+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 1",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:22:59.923928+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 2",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:23:00.021733+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 3",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:23:00.120727+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 4",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:23:00.215827+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 5",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:23:00.320458+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 6",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:23:00.391220+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 7",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:23:00.462391+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 8",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:23:00.535531+00:00",
+        "level": "INFO",
+        "logger": "ota_server",
+        "message": "Serving chunk request 9",
+        "event_type": "server_serving_chunk"
+      },
+      {
+        "timestamp": "2026-04-18T09:23:00.588994+00:00",
+        "level": "INFO",
+        "logger": "gateway_ecu_VEH-1",
+        "message": "Initializing robust Chunk Management Zone.",
+        "event_type": "chunk_download_started"
+      }
+    ]
+  }
+]

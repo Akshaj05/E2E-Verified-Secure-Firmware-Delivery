@@ -67,8 +67,13 @@ class GatewayECU:
 
         # 3. SBOM Manifest Validation (Zone 3)
         sbom_gen = SBOMGenerator()
-        if not sbom_gen.verify_sbom(manifest_data.get("_raw_sbom", {})):
-            self.logger.critical("High-severity CVE match triggers policy block. (Grype Scan Failure)", event_type="sbom_cve_block", device_id=self.device_id)
+        is_safe, violations = sbom_gen.verify_sbom(manifest_data.get("_raw_sbom", {}))
+        
+        if not is_safe:
+            # Dynamically log the explicit violation organically mapped from the Threat JSON Feed!
+            v = violations[0]
+            dynamic_msg = f"High-severity CVE match triggers policy block. Component: {v['name']} @ {v['version']} | {v['cve_id']}"
+            self.logger.critical(dynamic_msg, event_type="sbom_cve_block", device_id=self.device_id, cve_meta=v)
             self.installer.rollback(reason="SBOM_CVE_BLOCK")
             return
 

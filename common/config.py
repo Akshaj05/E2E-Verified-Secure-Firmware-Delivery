@@ -10,10 +10,10 @@ import os
 # ---------------------------------------------------------
 
 OTA_SERVER_HOST = os.getenv("OTA_SERVER_HOST", "127.0.0.1")
-OTA_SERVER_PORT = int(os.getenv("OTA_SERVER_PORT", "8000"))
+OTA_SERVER_PORT = int(os.getenv("OTA_SERVER_PORT", "7000"))
 OTA_SERVER_URL = f"http://{OTA_SERVER_HOST}:{OTA_SERVER_PORT}"
 
-DASHBOARD_URL = os.getenv("DASHBOARD_URL", "http://127.0.0.1:8001")
+DASHBOARD_URL = os.getenv("DASHBOARD_URL", "http://127.0.0.1:7001")
 
 # Default sizes
 CHUNK_SIZE = int(os.getenv("CHUNK_SIZE", "256"))

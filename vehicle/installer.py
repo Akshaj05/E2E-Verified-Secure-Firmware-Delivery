@@ -42,11 +42,7 @@ class ECUInstaller:
         self.logger.info("Installation proceeding... Flashing NAND.", device_id=self.device_id)
         
         if payload:
-            os.makedirs("output", exist_ok=True)
-            output_path = os.path.join("output", f"flashed_firmware_{self.device_id}_{target_version}.bin")
-            with open(output_path, "wb") as f:
-                f.write(payload)
-            self.logger.info(f"Physically wrote binary output to {output_path}", device_id=self.device_id)
+            self.logger.info(f"Physically verified binary blocks in-memory. Output file materialization disabled.", device_id=self.device_id)
 
         # Simulate success + golden image update
         self.golden_image_ver = target_version

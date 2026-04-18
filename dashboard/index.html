@@ -195,6 +195,22 @@
             color: #f8fafc;
         }
 
+        .clear-btn {
+            background: rgba(255, 50, 50, 0.2);
+            color: #ff4444;
+            border: 1px solid rgba(255, 50, 50, 0.4);
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .clear-btn:hover {
+            background: rgba(255, 50, 50, 0.4);
+            box-shadow: 0 0 15px rgba(255, 50, 50, 0.3);
+        }
+
         /* Logs Section */
         .logs-section {
             background: var(--panel-bg);
@@ -268,9 +284,12 @@
     <div class="container">
         <header>
             <h1>Fleet OTA Command Center</h1>
-            <div class="live-indicator">
-                <div class="dot"></div>
-                LIVE SYSTEM
+            <div style="display: flex; gap: 20px; align-items: center;">
+                <button id="clear-btn" class="clear-btn">Clear Events</button>
+                <div class="live-indicator">
+                    <div class="dot"></div>
+                    LIVE SYSTEM
+                </div>
             </div>
         </header>
 
@@ -301,7 +320,7 @@
         <div class="sbom-viewer" id="sbom-viewer">
             <h2>⚠️ Grype CVE Scan Failure</h2>
             <div class="cve-item" id="cve-details">
-                [CRITICAL] Component: libcurl @ 7.88.1 | CVE-2023-38545 | HIGH | OTA Installation Blocked
+                Awaiting dynamic SBOM scan results...
             </div>
         </div>
 
@@ -390,6 +409,11 @@
             // SBOM fail (Scenario 6)
             if (log.event_type === "sbom_cve_block") {
                 document.getElementById('sbom-viewer').style.display = 'block';
+                if (log.cve_meta) {
+                    document.getElementById('cve-details').innerText = `[BLOCKED] ${log.cve_meta.name} @ ${log.cve_meta.version} | ${log.cve_meta.cve_id} | SEVERITY: ${log.cve_meta.severity}`;
+                } else {
+                    document.getElementById('cve-details').innerText = log.message;
+                }
             }
             if (log.event_type === "ota_start") {
                 // Dim the old ones on new update start for visual clarity
@@ -455,6 +479,14 @@
                 console.error("Dashboard fetch error:", err);
             }
         }
+
+        document.getElementById('clear-btn').addEventListener('click', async () => {
+            try {
+                await fetch('/logs/clear', { method: 'DELETE' });
+                document.getElementById('logs-container').innerHTML = '';
+                lastLogCount = 0;
+            } catch(e) {}
+        });
 
         fetchDashboardData();
         setInterval(fetchDashboardData, 1000); // Poll slightly faster for UI responsiveness
