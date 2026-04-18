@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,7 +75,8 @@
             background: #1e2124;
             border: 1px solid var(--panel-border);
             border-radius: 4px;
-            padding: 1rem; /* Taller padding */
+            padding: 1rem;
+            /* Taller padding */
         }
 
         .metric-title {
@@ -93,10 +95,21 @@
             gap: 0.5rem;
         }
 
-        #val-ota_start { color: var(--accent); }
-        #val-install_success { color: var(--text-main); }
-        #val-attack_detected { color: var(--danger); }
-        #val-safety_block { color: var(--text-main); }
+        #val-ota_start {
+            color: var(--accent);
+        }
+
+        #val-install_success {
+            color: var(--text-main);
+        }
+
+        #val-attack_detected {
+            color: var(--danger);
+        }
+
+        #val-safety_block {
+            color: var(--text-main);
+        }
 
         /* Scenario 3: 10-Chunk Grid Viewer */
         .chunk-viewer {
@@ -106,12 +119,14 @@
             padding: 1rem;
             margin-bottom: 1.5rem;
         }
+
         .chunk-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 0.75rem;
         }
+
         .chunk-header h3 {
             font-weight: 400;
             font-size: 0.85rem;
@@ -120,28 +135,59 @@
             letter-spacing: 0.05em;
             margin: 0;
         }
+
         .chunk-list {
             display: flex;
             gap: 4px;
         }
+
         .chunk-box {
             flex: 1;
             background: transparent;
             border: 1px solid var(--panel-border);
             border-radius: 2px;
-            padding: 14px 0; /* Taller padding */
+            padding: 14px 0;
+            /* Taller padding */
             text-align: center;
             font-weight: 300;
             font-size: 0.75rem;
             color: var(--text-dim);
             transition: border-color 0.2s, color 0.2s;
         }
-        .cb-PENDING { border-color: var(--panel-border); }
-        .cb-DOWNLOADED { border-color: var(--accent); color: var(--text-main); }
-        .cb-VERIFIED { border-color: #57F287; color: #57F287; background: rgba(87, 242, 135, 0.15); }
-        .cb-CORRUPTED { border-color: var(--danger); color: var(--danger); background: rgba(237, 66, 69, 0.15); }
-        .cb-RETRANSMIT { border-color: var(--warning); color: var(--warning); background: rgba(254, 231, 92, 0.15); }
-        .cb-ROLLBACK, .cb-ABORT { border-color: #9b59b6; color: #9b59b6; background: rgba(155, 89, 182, 0.15); }
+
+        .cb-PENDING {
+            border-color: var(--panel-border);
+        }
+
+        .cb-DOWNLOADED {
+            border-color: var(--accent);
+            color: var(--text-main);
+        }
+
+        .cb-VERIFIED {
+            border-color: #57F287;
+            color: #57F287;
+            background: rgba(87, 242, 135, 0.15);
+        }
+
+        .cb-CORRUPTED {
+            border-color: var(--danger);
+            color: var(--danger);
+            background: rgba(237, 66, 69, 0.15);
+        }
+
+        .cb-RETRANSMIT {
+            border-color: var(--warning);
+            color: var(--warning);
+            background: rgba(254, 231, 92, 0.15);
+        }
+
+        .cb-ROLLBACK,
+        .cb-ABORT {
+            border-color: #9b59b6;
+            color: #9b59b6;
+            background: rgba(155, 89, 182, 0.15);
+        }
 
         /* Scenario 6: SBOM vulnerability Tracker */
         .sbom-viewer {
@@ -150,8 +196,10 @@
             border-radius: 8px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
-            display: none; /* hidden until triggered */
+            display: none;
+            /* hidden until triggered */
         }
+
         .sbom-viewer h2 {
             margin: 0 0 0.5rem 0;
             color: var(--warning);
@@ -160,6 +208,7 @@
             font-weight: 400;
             gap: 0.5rem;
         }
+
         .cve-item {
             background: rgba(254, 231, 92, 0.06);
             padding: 0.75rem;
@@ -176,8 +225,10 @@
             background: #1e2124;
             border: 1px solid var(--panel-border);
             border-radius: 8px;
-            padding: 1rem; /* Tighter outer padding to maximize terminal */
-            flex: 1; /* Stretch to max remaining vertical space */
+            padding: 1rem;
+            /* Tighter outer padding to maximize terminal */
+            flex: 1;
+            /* Stretch to max remaining vertical space */
             min-height: 250px;
             display: flex;
             flex-direction: column;
@@ -186,9 +237,13 @@
 
         .logs-section.fullscreen {
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             height: 100vh;
-            margin: 0; border-radius: 0;
+            margin: 0;
+            border-radius: 0;
             z-index: 1000;
         }
 
@@ -202,8 +257,12 @@
             color: var(--text-main);
         }
 
-        .logs-header h2 { font-weight: 400; font-size: 1rem; margin: 0; }
-        
+        .logs-header h2 {
+            font-weight: 400;
+            font-size: 1rem;
+            margin: 0;
+        }
+
         .console-btn {
             background: transparent;
             color: var(--text-dim);
@@ -214,9 +273,20 @@
             font-size: 0.85rem;
             font-weight: 400;
         }
-        .console-btn:hover { color: var(--text-main); background: rgba(255,255,255,0.05); }
-        .console-btn.btn-danger { border-color: var(--danger); color: var(--danger); }
-        .console-btn.btn-danger:hover { background: rgba(237, 66, 69, 0.1); }
+
+        .console-btn:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .console-btn.btn-danger {
+            border-color: var(--danger);
+            color: var(--danger);
+        }
+
+        .console-btn.btn-danger:hover {
+            background: rgba(237, 66, 69, 0.1);
+        }
 
         .logs-container {
             flex-grow: 1;
@@ -227,9 +297,15 @@
             padding-right: 0.5rem;
         }
 
-        .logs-container::-webkit-scrollbar { width: 6px; }
-        .logs-container::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
-        
+        .logs-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .logs-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
         .log-item {
             background: transparent;
             border-left: 2px solid var(--panel-border);
@@ -244,32 +320,86 @@
             gap: 0.5rem;
         }
 
-        .log-meta { display: flex; gap: 0.5rem; color: var(--text-dim); font-size: 0.75rem; white-space: nowrap; flex-shrink: 0; }
-        .badge { padding: 2px 4px; border-radius: 3px; font-weight: 400; font-size: 0.7rem; }
-        .badge.INFO { background: rgba(114, 137, 218, 0.1); color: var(--accent); }
-        .badge.WARNING { background: rgba(254, 231, 92, 0.1); color: var(--warning); }
-        .badge.ERROR, .badge.CRITICAL { background: rgba(237, 66, 69, 0.1); color: var(--danger); }
-        
+        .log-meta {
+            display: flex;
+            gap: 0.5rem;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .badge {
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: 400;
+            font-size: 0.7rem;
+        }
+
+        .badge.INFO {
+            background: rgba(114, 137, 218, 0.1);
+            color: var(--accent);
+        }
+
+        .badge.WARNING {
+            background: rgba(254, 231, 92, 0.1);
+            color: var(--warning);
+        }
+
+        .badge.ERROR,
+        .badge.CRITICAL {
+            background: rgba(237, 66, 69, 0.1);
+            color: var(--danger);
+        }
+
         .log-item.level-WARNING {
             background-color: rgba(254, 231, 92, 0.15);
             border-left-color: var(--warning);
         }
-        
-        .log-item.level-ERROR, .log-item.level-CRITICAL {
+
+        .log-item.level-ERROR,
+        .log-item.level-CRITICAL {
             background-color: rgba(237, 66, 69, 0.15);
             border-left-color: var(--danger);
         }
 
-        .log-message { color: var(--text-main); word-break: break-word; }
+        .log-message {
+            color: var(--text-main);
+            word-break: break-word;
+        }
 
-        .log-item.attack_detected { border-left-color: var(--danger); }
-        .log-item.install_success { border-left-color: var(--text-dim); }
-        .log-item.safety_block { border-left-color: var(--text-main); }
-        .log-item.rollback, .log-item.sbom_cve_block { border-left-color: var(--warning); }
-        .log-item.signature_failure, .log-item.update_abort { border-left-color: var(--danger); }
-        .log-item.sbom_force_patch { border-left-color: var(--warning); }
-        
-        #empty-logs { color: var(--text-dim); text-align: center; margin-top: 2rem; font-style: italic; }
+        .log-item.attack_detected {
+            border-left-color: var(--danger);
+        }
+
+        .log-item.install_success {
+            border-left-color: var(--text-dim);
+        }
+
+        .log-item.safety_block {
+            border-left-color: var(--text-main);
+        }
+
+        .log-item.rollback,
+        .log-item.sbom_cve_block {
+            border-left-color: var(--warning);
+        }
+
+        .log-item.signature_failure,
+        .log-item.update_abort {
+            border-left-color: var(--danger);
+        }
+
+        .log-item.sbom_force_patch {
+            border-left-color: var(--warning);
+        }
+
+        #empty-logs {
+            color: var(--text-dim);
+            text-align: center;
+            margin-top: 2rem;
+            font-style: italic;
+        }
 
         .demo-btn {
             background: #7289da;
@@ -280,12 +410,18 @@
             cursor: pointer;
             font-weight: 400;
         }
-        .demo-btn:hover { background: #5b6eae; }
+
+        .demo-btn:hover {
+            background: #5b6eae;
+        }
 
         /* Modal Overlay */
         .modal-overlay {
             position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             background: rgba(30, 33, 36, 0.95);
             display: none;
             justify-content: center;
@@ -293,6 +429,7 @@
             z-index: 10000;
             backdrop-filter: blur(6px);
         }
+
         .modal {
             background: #2c2f33;
             border: 1px solid var(--panel-border);
@@ -302,6 +439,7 @@
             padding: 1.5rem;
             color: var(--text-main);
         }
+
         .modal-header {
             display: flex;
             justify-content: space-between;
@@ -310,71 +448,138 @@
             border-bottom: 1px solid var(--panel-border);
             padding-bottom: 0.5rem;
         }
-        .modal-header h2 { margin: 0; font-weight: 500; font-size: 1.25rem; }
-        .close-btn {
-            background: transparent; border: none; color: var(--text-dim);
-            font-size: 1.5rem; cursor: pointer;
+
+        .modal-header h2 {
+            margin: 0;
+            font-weight: 500;
+            font-size: 1.25rem;
         }
-        .close-btn:hover { color: var(--text-main); }
+
+        .close-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: var(--text-main);
+        }
+
         .demo-list {
-            display: flex; flex-direction: column; gap: 0.5rem;
-            max-height: 60vh; overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            max-height: 60vh;
+            overflow-y: auto;
             padding-right: 0.5rem;
         }
-        .demo-list::-webkit-scrollbar { width: 6px; }
-        .demo-list::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
-        
+
+        .demo-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .demo-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
         .demo-item {
             background: #23272a;
             border: 1px solid var(--panel-border);
             border-radius: 4px;
             padding: 1rem;
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        .demo-info h4 { margin: 0 0 0.25rem 0; font-weight: 500; }
-        .demo-info p { margin: 0; font-size: 0.8rem; color: var(--text-dim); line-height: 1.2;}
+
+        .demo-info h4 {
+            margin: 0 0 0.25rem 0;
+            font-weight: 500;
+        }
+
+        .demo-info p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            line-height: 1.2;
+        }
+
         .run-btn {
-            background: #7289da; color: #fff; border: none;
-            padding: 6px 16px; border-radius: 4px; cursor: pointer; font-weight: 400;
+            background: #7289da;
+            color: #fff;
+            border: none;
+            padding: 6px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 400;
         }
-        .run-btn:hover { background: #5b6eae; }
+
+        .run-btn:hover {
+            background: #5b6eae;
+        }
     </style>
 </head>
+
 <body>
 
     <div class="modal-overlay" id="demo-modal">
         <div class="modal">
             <div class="modal-header">
                 <h2>Select Simulator Scenario</h2>
-                <button class="close-btn" id="modal-close-btn" onclick="document.getElementById('demo-modal').style.display='none'">&times;</button>
+                <button class="close-btn" id="modal-close-btn"
+                    onclick="document.getElementById('demo-modal').style.display='none'">&times;</button>
             </div>
             <div class="demo-list">
                 <div class="demo-item">
-                    <div class="demo-info"><h4>Normal OTA Update</h4><p>Standard chunk verification and installation success.</p></div>
+                    <div class="demo-info">
+                        <h4>Normal OTA Update</h4>
+                        <p>Standard chunk verification and installation success.</p>
+                    </div>
                     <button class="run-btn" onclick="runDemo('demo_1_normal.py', 'Normal Update')">Run</button>
                 </div>
                 <div class="demo-item">
-                    <div class="demo-info"><h4>Payload Tampering Attack</h4><p>Simulates malicious network injection catching corrupted chunks.</p></div>
+                    <div class="demo-info">
+                        <h4>Payload Tampering Attack</h4>
+                        <p>Simulates malicious network injection catching corrupted chunks.</p>
+                    </div>
                     <button class="run-btn" onclick="runDemo('demo_2_tampered.py', 'Tampering Attack')">Run</button>
                 </div>
                 <div class="demo-item">
-                    <div class="demo-info"><h4>Chunk Loss Retransmit</h4><p>Asserts robust network recovery with chunk retransmissions.</p></div>
+                    <div class="demo-info">
+                        <h4>Chunk Loss Retransmit</h4>
+                        <p>Asserts robust network recovery with chunk retransmissions.</p>
+                    </div>
                     <button class="run-btn" onclick="runDemo('demo_3_retransmit.py', 'Retransmits')">Run</button>
                 </div>
                 <div class="demo-item">
-                    <div class="demo-info"><h4>OTA Resume Recovery</h4><p>Hard interrupts the connection, then verifies seamless restart.</p></div>
+                    <div class="demo-info">
+                        <h4>OTA Resume Recovery</h4>
+                        <p>Hard interrupts the connection, then verifies seamless restart.</p>
+                    </div>
                     <button class="run-btn" onclick="runDemo('demo_4_resume.py', 'Resume Recovery')">Run</button>
                 </div>
                 <div class="demo-item">
-                    <div class="demo-info"><h4>Rogue HSM Injection</h4><p>Defends against unverified keys attempting to side-load updates.</p></div>
+                    <div class="demo-info">
+                        <h4>Rogue HSM Injection</h4>
+                        <p>Defends against unverified keys attempting to side-load updates.</p>
+                    </div>
                     <button class="run-btn" onclick="runDemo('demo_5_rogue_hsm.py', 'Rogue Injection')">Run</button>
                 </div>
                 <div class="demo-item">
-                    <div class="demo-info"><h4>Vulnerable SBOM Scenario</h4><p>Software Bill of Materials vulnerability halts the update.</p></div>
+                    <div class="demo-info">
+                        <h4>Vulnerable SBOM Scenario</h4>
+                        <p>Software Bill of Materials vulnerability halts the update.</p>
+                    </div>
                     <button class="run-btn" onclick="runDemo('demo_6_sbom_cve.py', 'SBOM Exploit Block')">Run</button>
                 </div>
                 <div class="demo-item">
-                    <div class="demo-info"><h4>Safe State Rollback</h4><p>Reverts firmware if the system hardware validation fails.</p></div>
+                    <div class="demo-info">
+                        <h4>Safe State Rollback</h4>
+                        <p>Reverts firmware if the system hardware validation fails.</p>
+                    </div>
                     <button class="run-btn" onclick="runDemo('demo_7_rollback.py', 'Rollback')">Run</button>
                 </div>
             </div>
@@ -391,23 +596,23 @@
 
         <div class="metrics-grid">
             <div class="metric-card">
-                <div class="metric-title">Updates</div>
+                <div class="metric-title">Updates Initiated</div>
                 <div class="metric-value" id="val-ota_start">0</div>
             </div>
             <div class="metric-card">
-                <div class="metric-title">Retries</div>
+                <div class="metric-title">Retransmissions Requested</div>
                 <div class="metric-value" id="val-chunk_retransmission_requested" style="color: var(--warning)">0</div>
             </div>
             <div class="metric-card">
-                <div class="metric-title">Success</div>
+                <div class="metric-title">Successful Installs</div>
                 <div class="metric-value" id="val-install_success" style="color: #57F287">0</div>
             </div>
             <div class="metric-card">
-                <div class="metric-title">Corrupted Chunks</div>
+                <div class="metric-title">Chunks Corrupte</div>
                 <div class="metric-value" id="val-chunk_corrupted" style="color: var(--danger)">0</div>
             </div>
             <div class="metric-card">
-                <div class="metric-title">Aborts</div>
+                <div class="metric-title">Update Aborts (Fail/Rollback)</div>
                 <div class="metric-value" id="val-rollback" style="color: var(--danger)">0</div>
             </div>
         </div>
@@ -415,7 +620,9 @@
         <!-- Firmware SBOM Scanner Alert (Scenario 6) -->
         <div class="sbom-viewer" id="sbom-viewer">
             <h2>SBOM Supply Chain Alert</h2>
-            <div id="sbom-version-mismatch" style="background: rgba(254, 231, 92, 0.06); padding: 0.5rem 0.75rem; border-left: 2px solid var(--warning); border-radius: 4px; font-family: monospace; color: var(--warning); margin-bottom: 0.5rem; display: none;"></div>
+            <div id="sbom-version-mismatch"
+                style="background: rgba(254, 231, 92, 0.06); padding: 0.5rem 0.75rem; border-left: 2px solid var(--warning); border-radius: 4px; font-family: monospace; color: var(--warning); margin-bottom: 0.5rem; display: none;">
+            </div>
             <div class="cve-item" id="cve-details">
                 Awaiting dynamic SBOM scan results...
             </div>
@@ -425,7 +632,9 @@
         <div class="chunk-viewer">
             <div class="chunk-header">
                 <h3>Payload Validation</h3>
-                <button onclick="resetChunks()" style="background:transparent; color:var(--text-dim); border:1px solid var(--panel-border); padding:6px 12px; border-radius:4px; cursor:pointer; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; font-weight: 400; transition: all 0.2s;">&#8635; Reset</button>
+                <button onclick="resetChunks()"
+                    style="background:transparent; color:var(--text-dim); border:1px solid var(--panel-border); padding:6px 12px; border-radius:4px; cursor:pointer; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; font-weight: 400; transition: all 0.2s;">&#8635;
+                    Reset</button>
             </div>
             <div class="chunk-list" id="chunk-list">
                 <!-- JS will inject 10 chunks here -->
@@ -439,8 +648,14 @@
                     <span id="log-count" style="font-size: 0.7rem; color: var(--text-dim);">0 items</span>
                 </div>
                 <div style="display: flex; gap: 8px;">
-                    <button class="console-btn" id="fs-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen" style="display: flex; align-items: center; justify-content: center; padding: 6px 10px;">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+                    <button class="console-btn" id="fs-btn" onclick="toggleFullscreen()" title="Toggle Fullscreen"
+                        style="display: flex; align-items: center; justify-content: center; padding: 6px 10px;">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path
+                                d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3">
+                            </path>
+                        </svg>
                     </button>
                     <button class="console-btn btn-danger" onclick="clearLogs()">Clear</button>
                 </div>
@@ -453,10 +668,10 @@
 
     <script>
         let lastLogCount = 0;
-        
+
         // Initialize 10 chunks
         const chunkList = document.getElementById('chunk-list');
-        for(let i=0; i<10; i++) {
+        for (let i = 0; i < 10; i++) {
             const box = document.createElement('div');
             box.className = 'chunk-box cb-PENDING';
             box.id = `chunk-${i}`;
@@ -465,16 +680,16 @@
         }
 
         async function runDemo(scriptName, demoTitle) {
-            document.getElementById('demo-modal').style.display='none';
+            document.getElementById('demo-modal').style.display = 'none';
             document.getElementById('demo-btn').innerText = `Running: ${demoTitle}`;
-            
+
             try {
                 await fetch('/logs/clear', { method: 'DELETE' });
                 document.getElementById('logs-container').innerHTML = '';
                 lastLogCount = 0;
                 resetChunks();
-            } catch(e) {}
-            
+            } catch (e) { }
+
             fetch('/run-demo', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -494,7 +709,7 @@
         });
 
         function resetChunks() {
-            for(let i=0; i<10; i++) {
+            for (let i = 0; i < 10; i++) {
                 const box = document.getElementById(`chunk-${i}`);
                 if (box) box.className = 'chunk-box cb-PENDING';
             }
@@ -519,7 +734,7 @@
             // Combine failures and rollbacks into aborts
             const aborts = (m.rollback || 0) + (m.chunk_retry_exceeded || 0) + (m.signature_failure || 0) + (m.update_abort || 0);
             updateField('val-rollback', aborts);
-            
+
             document.getElementById('log-count').innerText = `${metricsData.total_logs || 0} Events`;
         }
 
@@ -559,7 +774,7 @@
                     }
                 }
             }
-            
+
             // SBOM events (Scenario 6)
             if (log.event_type === "sbom_scan_started") {
                 document.getElementById('sbom-viewer').style.display = 'block';
@@ -600,16 +815,16 @@
                 document.getElementById('cve-details').innerText = '✓ CVE resolved — safe to proceed with OTA.';
             }
             if (log.event_type === "ota_start") {
-                for(let i=0; i<10; i++) {
+                for (let i = 0; i < 10; i++) {
                     const box = document.getElementById(`chunk-${i}`);
-                    if(box) box.className = 'chunk-box cb-PENDING';
+                    if (box) box.className = 'chunk-box cb-PENDING';
                 }
             }
-            
+
             if (log.event_type === "rollback" || log.event_type === "safety_block" || log.event_type === "update_abort" || log.event_type === "signature_failure") {
-                for(let i=0; i<10; i++) {
+                for (let i = 0; i < 10; i++) {
                     const box = document.getElementById(`chunk-${i}`);
-                    if(box) box.className = 'chunk-box cb-ROLLBACK';
+                    if (box) box.className = 'chunk-box cb-ROLLBACK';
                 }
                 // Hide SBOM div on rollback/abort — not relevant for this demo
                 document.getElementById('sbom-viewer').style.display = 'none';
@@ -629,18 +844,18 @@
 
             while (uiQueue.length > 0) {
                 const log = uiQueue.shift();
-                
+
                 const levelClass = log.level || 'INFO';
                 const div = document.createElement('div');
                 div.className = `log-item level-${levelClass} ${log.event_type || ''}`;
-                
+
                 let timeStr = "00:00:00";
-                if(log.timestamp) {
+                if (log.timestamp) {
                     try {
                         timeStr = new Date(log.timestamp).toLocaleTimeString();
-                    }catch(e){}
+                    } catch (e) { }
                 }
-                
+
                 div.innerHTML = `
                     <div class="log-meta">
                         <span class="badge ${levelClass}">${levelClass}</span>
@@ -650,14 +865,14 @@
                     </div>
                     <div class="log-message">${log.message || JSON.stringify(log)}</div>
                 `;
-                
+
                 container.insertBefore(div, container.firstChild);
                 processLogEvent(log);
-                
+
                 // Provide visual staggered delay (35ms for fast but traceable progression)
                 await new Promise(r => setTimeout(r, 35));
             }
-            
+
             isProcessingQueue = false;
         }
 
@@ -692,7 +907,7 @@
                     const resL = await fetch('/logs');
                     if (resL.ok) renderLogs(await resL.json());
                 }
-            } catch (err) {}
+            } catch (err) { }
         }
 
         async function clearLogs() {
@@ -702,7 +917,7 @@
                 lastLogCount = 0;
                 uiQueue.length = 0;
                 resetChunks();
-            } catch(e) {}
+            } catch (e) { }
         }
 
         function toggleFullscreen() {
@@ -720,4 +935,5 @@
         setInterval(fetchDashboardData, 1000); // Poll slightly faster for UI responsiveness
     </script>
 </body>
+
 </html>
