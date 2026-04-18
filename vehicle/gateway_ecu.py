@@ -64,32 +64,46 @@ class GatewayECU:
 
         if not is_valid:
             self.logger.critical("MANIFEST SIGNATURE VERIFICATION FAILED. Origin untrusted or payload tampered.", event_type="signature_failure", device_id=self.device_id)
+            time.sleep(0.5)
+            self.installer.rollback(reason="SIGNATURE_VERIFICATION_FAILURE")
+            time.sleep(0.5)
+            self.logger.critical("UPDATE ABORTED — Rolling back to Golden Image v1.0.0. ECU integrity preserved.", event_type="update_abort", device_id=self.device_id)
             return
 
         # 3. SBOM Manifest Validation (Zone 3)
         sbom_gen = SBOMGenerator()
-        is_safe, violations = sbom_gen.verify_sbom(manifest_data.get("_raw_sbom", {}))
+        
+        # In reality, this comes from manifest_data["_raw_sbom"]. 
+        # Since our mock OTA server doesn't host the bulky JSON directly, we simulate fetching it.
+        raw_sbom = manifest_data.get("_raw_sbom")
+        if not raw_sbom:
+            raw_sbom = sbom_gen.build_sbom().get("sbom", {})
+            
+        is_safe, violations = sbom_gen.verify_sbom(raw_sbom)
         
         if not is_safe:
             v = violations[0]
 
-            # Step 1: Warn about SBOM scan triggering
-            self.logger.warning("SBOM dependency audit initiated — scanning component manifest against CVE database...", event_type="sbom_scan_started", device_id=self.device_id)
-            time.sleep(0.8)
+            # Step 1: SBOM scan triggered
+            self.logger.info("SBOM dependency audit initiated — scanning component manifest against CVE database...", event_type="sbom_scan_started", device_id=self.device_id)
+            time.sleep(1.0)
             
-            # Step 2: Flag version mismatch
-            self.logger.warning(f"VERSION MISMATCH DETECTED — {v['name']} expected ≥8.4.0, found {v['version']}", event_type="sbom_version_mismatch", device_id=self.device_id)
-            time.sleep(0.8)
+            # Step 2: Version mismatch ERROR (red)
+            self.logger.error(f"VERSION MISMATCH — {v['name']} expected ≥8.4.0, found {v['version']} — FAILED", event_type="sbom_version_mismatch", device_id=self.device_id)
+            time.sleep(1.0)
 
-            # Step 3: Log the CVE match
-            self.logger.warning(f"CVE MATCH — {v['cve_id']} | Severity: {v['severity']} | {v['name']} @ {v['version']}", event_type="sbom_cve_block", device_id=self.device_id, cve_meta=v)
-            time.sleep(0.5)
+            # Step 3: CVE match ERROR (red)
+            self.logger.error(f"CVE DETECTED — {v['cve_id']} | Severity: {v['severity']} | Component: {v['name']} @ {v['version']}", event_type="sbom_cve_block", device_id=self.device_id, cve_meta=v)
+            time.sleep(1.0)
 
             # Demo 6 path: forcefully correct version and continue
             if os.environ.get("FORCE_CVE", "false").lower() == "true":
+                # Step 4: Force patch WARNING (yellow)
                 self.logger.warning(f"SBOM OVERRIDE — Forcefully patching {v['name']} from {v['version']} → 8.4.0 (safe version)", event_type="sbom_force_patch", device_id=self.device_id)
+                time.sleep(1.0)
+                # Step 5: Corrected INFO (green)
+                self.logger.info(f"SBOM corrected — {v['name']} @ 8.4.0 verified safe. Proceeding with OTA.", event_type="sbom_corrected", device_id=self.device_id)
                 time.sleep(0.5)
-                self.logger.info(f"SBOM corrected — {v['name']} @ 8.4.0 verified against CVE database. Proceeding with OTA.", event_type="sbom_corrected", device_id=self.device_id)
             else:
                 # Standard security policy: block
                 self.logger.critical(f"POLICY BLOCK — Update halted due to unresolved CVE in supply chain.", event_type="sbom_policy_block", device_id=self.device_id)

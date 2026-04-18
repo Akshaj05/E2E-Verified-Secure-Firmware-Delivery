@@ -266,6 +266,8 @@
         .log-item.install_success { border-left-color: var(--text-dim); }
         .log-item.safety_block { border-left-color: var(--text-main); }
         .log-item.rollback, .log-item.sbom_cve_block { border-left-color: var(--warning); }
+        .log-item.signature_failure, .log-item.update_abort { border-left-color: var(--danger); }
+        .log-item.sbom_force_patch { border-left-color: var(--warning); }
         
         #empty-logs { color: var(--text-dim); text-align: center; margin-top: 2rem; font-style: italic; }
 
@@ -412,7 +414,7 @@
 
         <!-- Firmware SBOM Scanner Alert (Scenario 6) -->
         <div class="sbom-viewer" id="sbom-viewer">
-            <h2>⚠️ SBOM Supply Chain Alert</h2>
+            <h2>SBOM Supply Chain Alert</h2>
             <div id="sbom-version-mismatch" style="background: rgba(254, 231, 92, 0.06); padding: 0.5rem 0.75rem; border-left: 2px solid var(--warning); border-radius: 4px; font-family: monospace; color: var(--warning); margin-bottom: 0.5rem; display: none;"></div>
             <div class="cve-item" id="cve-details">
                 Awaiting dynamic SBOM scan results...
@@ -515,7 +517,7 @@
             updateField('val-chunk_corrupted', m.chunk_corrupted || 0);
             updateField('val-chunk_retransmission_requested', m.chunk_retransmission_requested || 0);
             // Combine failures and rollbacks into aborts
-            const aborts = (m.rollback || 0) + (m.chunk_retry_exceeded || 0) + (m.signature_failure || 0);
+            const aborts = (m.rollback || 0) + (m.chunk_retry_exceeded || 0) + (m.signature_failure || 0) + (m.update_abort || 0);
             updateField('val-rollback', aborts);
             
             document.getElementById('log-count').innerText = `${metricsData.total_logs || 0} Events`;
@@ -562,29 +564,40 @@
             if (log.event_type === "sbom_scan_started") {
                 document.getElementById('sbom-viewer').style.display = 'block';
                 document.getElementById('cve-details').innerText = 'Scanning component manifest against CVE database...';
+                document.getElementById('cve-details').style.color = 'var(--text-main)';
+                document.getElementById('cve-details').style.borderLeftColor = 'var(--warning)';
             }
             if (log.event_type === "sbom_version_mismatch") {
                 const mismatchEl = document.getElementById('sbom-version-mismatch');
                 mismatchEl.style.display = 'block';
-                mismatchEl.innerText = log.message;
+                mismatchEl.style.color = 'var(--danger)';
+                mismatchEl.style.borderLeftColor = 'var(--danger)';
+                mismatchEl.innerText = '✗ ' + log.message;
             }
             if (log.event_type === "sbom_cve_block") {
+                const cveEl = document.getElementById('cve-details');
+                cveEl.style.color = 'var(--danger)';
+                cveEl.style.borderLeftColor = 'var(--danger)';
                 if (log.cve_meta) {
-                    document.getElementById('cve-details').innerText = `[CVE MATCH] ${log.cve_meta.name} @ ${log.cve_meta.version} | ${log.cve_meta.cve_id} | SEVERITY: ${log.cve_meta.severity}`;
+                    cveEl.innerText = `✗ [CVE DETECTED] ${log.cve_meta.name} @ ${log.cve_meta.version} | ${log.cve_meta.cve_id} | SEVERITY: ${log.cve_meta.severity}`;
                 } else {
-                    document.getElementById('cve-details').innerText = log.message;
+                    cveEl.innerText = '✗ ' + log.message;
                 }
             }
             if (log.event_type === "sbom_force_patch") {
                 const mismatchEl = document.getElementById('sbom-version-mismatch');
-                mismatchEl.style.color = '#57F287';
-                mismatchEl.style.borderLeftColor = '#57F287';
-                mismatchEl.innerText = log.message;
+                mismatchEl.style.color = 'var(--warning)';
+                mismatchEl.style.borderLeftColor = 'var(--warning)';
+                mismatchEl.innerText = '⚠ ' + log.message;
             }
             if (log.event_type === "sbom_corrected") {
+                const mismatchEl = document.getElementById('sbom-version-mismatch');
+                mismatchEl.style.color = '#57F287';
+                mismatchEl.style.borderLeftColor = '#57F287';
+                mismatchEl.innerText = '✓ ' + log.message;
                 document.getElementById('cve-details').style.color = '#57F287';
                 document.getElementById('cve-details').style.borderLeftColor = '#57F287';
-                document.getElementById('cve-details').innerText = '✓ ' + log.message;
+                document.getElementById('cve-details').innerText = '✓ CVE resolved — safe to proceed with OTA.';
             }
             if (log.event_type === "ota_start") {
                 for(let i=0; i<10; i++) {
@@ -593,11 +606,13 @@
                 }
             }
             
-            if (log.event_type === "rollback" || log.event_type === "safety_block") {
+            if (log.event_type === "rollback" || log.event_type === "safety_block" || log.event_type === "update_abort" || log.event_type === "signature_failure") {
                 for(let i=0; i<10; i++) {
                     const box = document.getElementById(`chunk-${i}`);
                     if(box) box.className = 'chunk-box cb-ROLLBACK';
                 }
+                // Hide SBOM div on rollback/abort — not relevant for this demo
+                document.getElementById('sbom-viewer').style.display = 'none';
             }
         }
 
