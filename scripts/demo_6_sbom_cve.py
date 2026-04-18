@@ -18,6 +18,7 @@ def run_demo():
     try:
         env_attack = env.copy()
         env_attack["FORCE_CVE"] = "true"
+        env_attack["SKIP_BAD_BATTERY"] = "true"
         subprocess.run([sys.executable, "main.py", "--vehicle"], env=env_attack, cwd=root_dir)
     finally:
         server_process.terminate()

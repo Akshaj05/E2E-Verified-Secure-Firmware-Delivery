@@ -26,16 +26,8 @@ class ECUInstaller:
         """
         self.logger.info("Evaluating safety interlocks for install...", device_id=self.device_id)
 
-        if state.engine_state != "IDLE":
-            self.logger.warning("Installation blocked: Engine must be IDLE (OFF)", event_type="safety_block", device_id=self.device_id)
-            return False
-            
-        if state.battery_level < 70.0:
-            self.logger.warning("Installation blocked: Battery below 70%", event_type="safety_block", device_id=self.device_id)
-            return False
-            
-        if state.gear_state != "PARK":
-            self.logger.warning("Installation blocked: Gear must be PARK", event_type="safety_block", device_id=self.device_id)
+        if state.battery_level < 50.0:
+            self.logger.warning("Installation blocked: Battery below 50%", event_type="safety_block", device_id=self.device_id)
             return False
 
         # Simulate Flash Write

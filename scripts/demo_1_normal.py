@@ -11,6 +11,7 @@ def run_demo():
     print("=============================================\n")
     
     env = os.environ.copy()
+    env["SKIP_BAD_BATTERY"] = "true"
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     server_process = subprocess.Popen([sys.executable, "main.py", "--server"], env=env, cwd=root_dir)
     time.sleep(5) 

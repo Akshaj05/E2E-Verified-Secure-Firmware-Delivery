@@ -93,10 +93,11 @@ def run_vehicle_node():
         os.environ["FORCE_CVE"] = "true" 
 
     # Example 1: Battery constraints block installation
-    print("\n[+] ECU executing OTA Request (Battery low)...")
-    req_bad = UpdateRequest(device_id="VEH-1", current_version="v1.0.0", battery_level=55.0, engine_state="IDLE", gear_state="PARK")
-    ecu.execute_ota_workflow("v2.0.0", req_bad)
-    time.sleep(2)
+    if os.environ.get("SKIP_BAD_BATTERY", "false").lower() != "true":
+        print("\n[+] ECU executing OTA Request (Battery low)...")
+        req_bad = UpdateRequest(device_id="VEH-1", current_version="v1.0.0", battery_level=45.0, engine_state="IDLE", gear_state="PARK")
+        ecu.execute_ota_workflow("v2.0.0", req_bad)
+        time.sleep(2)
 
     # Example 2: Normal safe state
     if not ROGUE_HSM and not FORCE_CVE and FORCE_INTERRUPT_AT == -1:

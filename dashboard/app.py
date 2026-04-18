@@ -2,8 +2,10 @@ from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse
 from collections import defaultdict
 import os
-
+import sys
+import subprocess
 import json
+from pydantic import BaseModel
 
 app = FastAPI(title="Fleet Management Dashboard")
 
@@ -74,3 +76,15 @@ def get_logs():
 def clear_logs():
     logs.clear()
     return {"status": "ok"}
+
+class DemoRequest(BaseModel):
+    script_name: str
+
+@app.post("/run-demo")
+def run_demo(req: DemoRequest):
+    root_dir = os.path.dirname(os.path.dirname(__file__))
+    script_path = os.path.join(root_dir, "scripts", req.script_name)
+    if os.path.exists(script_path) and script_path.endswith(".py"):
+        subprocess.Popen([sys.executable, script_path], cwd=root_dir)
+        return {"status": "ok", "script": req.script_name}
+    return {"status": "error", "message": "Script not found"}
