@@ -1,6 +1,7 @@
 from common.models import UpdateRequest
 from common.logger import SecurityLogger
 import os
+import time
 
 # ---------------------------------------------------------
 # SECURITY RATIONALE:

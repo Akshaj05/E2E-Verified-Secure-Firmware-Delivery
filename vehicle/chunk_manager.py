@@ -33,6 +33,11 @@ class ChunkManager:
         
         self.MAX_RETRIES = 3
         self.state_file = "output/resume_state.json"
+        
+        # Performance metrics
+        self.perf = {}
+        self._chunk_validation_times = []   # nanoseconds per chunk
+        self._resume_start_time = None
 
     def _save_state(self):
         os.makedirs("output", exist_ok=True)
@@ -65,8 +70,10 @@ class ChunkManager:
         self._load_state(total_chunks)
         
         verified_count = sum(1 for v in self.chunk_states.values() if v == ChunkState.VERIFIED)
+        is_resume = verified_count > 0
         
-        if verified_count > 0:
+        if is_resume:
+            self._resume_start_time = time.perf_counter()
             rem = total_chunks - verified_count
             start_id = [k for k,v in self.chunk_states.items() if v != ChunkState.VERIFIED][0]
             self.logger.info(f"OTA_RESUMED — resuming from chunk_id: {start_id} — {rem} chunks remaining", event_type="ota_resumed")
@@ -79,6 +86,8 @@ class ChunkManager:
             
         tree = MerkleTreeBuilder(self.secret)
         pending_chunks = [i for i, state in self.chunk_states.items() if state != ChunkState.VERIFIED]
+        corrupted_count = 0
+        first_resume_verified = False
 
         while pending_chunks:
             for i in pending_chunks:
@@ -87,10 +96,12 @@ class ChunkManager:
                     self._save_state()
                     verified_count = sum(1 for v in self.chunk_states.values() if v == ChunkState.VERIFIED)
                     self.logger.critical(f"OTA_INTERRUPTED — {verified_count}/{total_chunks} chunks verified — state persisted", event_type="ota_interrupted")
+                    self._finalize_chunk_perf(total_chunks, corrupted_count)
                     return False
 
                 if self.retry_counts[i] >= self.MAX_RETRIES:
                     self.logger.critical(f"Chunk {i} exceeded max retries. Aborting update.", event_type="chunk_retry_exceeded")
+                    self._finalize_chunk_perf(total_chunks, corrupted_count)
                     return False
 
                 if self.retry_counts[i] > 0:
@@ -124,21 +135,50 @@ class ChunkManager:
                 if mitm_actor:
                     data = mitm_actor.intercept_chunk(i, data, retry_count=self.retry_counts[i])
 
-                if not tree.verify_chunk(data, leaf_hashes[i]):
+                # ---- PERF: Per-Chunk Validation Time ----
+                chunk_verify_start = time.perf_counter_ns()
+                chunk_valid = tree.verify_chunk(data, leaf_hashes[i])
+                chunk_verify_end = time.perf_counter_ns()
+                self._chunk_validation_times.append(chunk_verify_end - chunk_verify_start)
+                # ---- END PERF ----
+
+                if not chunk_valid:
                     # Exact prompt match Scenario 3: CHUNK_FAIL
                     self.logger.error(f"CHUNK_FAIL — chunk_id: {i} — SHA3-256 mismatch detected", event_type="chunk_corrupted", chunk_id=i)
                     self.chunk_states[i] = ChunkState.CORRUPTED
                     self.retry_counts[i] += 1
+                    corrupted_count += 1
                     continue
 
                 self.chunk_states[i] = ChunkState.VERIFIED
                 self.chunk_data[i] = data
                 self.logger.info(f"VERIFIED — chunk_id: {i}", event_type="chunk_verified", chunk_id=i)
+                
+                # ---- PERF: Cold-Start Resume Latency ----
+                if is_resume and not first_resume_verified and self._resume_start_time:
+                    resume_latency = (time.perf_counter() - self._resume_start_time) * 1000
+                    self.perf["cold_start_resume_latency_ms"] = round(resume_latency, 2)
+                    first_resume_verified = True
+                # ---- END PERF ----
 
             pending_chunks = [i for i, state in self.chunk_states.items() if state != ChunkState.VERIFIED]
 
         self._clear_state() # Cleanup after full success
+        self._finalize_chunk_perf(total_chunks, corrupted_count)
         return True
     
+    def _finalize_chunk_perf(self, total_chunks: int, corrupted_count: int):
+        """Compute and store chunk-level performance metrics."""
+        if self._chunk_validation_times:
+            avg_ns = sum(self._chunk_validation_times) / len(self._chunk_validation_times)
+            self.perf["per_chunk_validation_time_us"] = round(avg_ns / 1000, 2)
+        
+        # Surgical Retransmit Efficiency
+        if corrupted_count > 0:
+            saved = ((total_chunks - corrupted_count) / total_chunks) * 100
+            self.perf["surgical_retransmit_efficiency"] = f"{round(saved, 1)}% bandwidth saved ({corrupted_count}/{total_chunks} chunks retransmitted)"
+        else:
+            self.perf["surgical_retransmit_efficiency"] = "100% — zero corruption detected"
+
     def assemble_binary(self, total_chunks: int) -> bytes:
         return b"".join(self.chunk_data[i] for i in range(total_chunks))

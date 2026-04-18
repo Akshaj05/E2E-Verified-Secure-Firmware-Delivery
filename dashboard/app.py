@@ -1,5 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import FileResponse
+from starlette.requests import ClientDisconnect
 from collections import defaultdict
 import os
 import sys
@@ -10,6 +11,7 @@ from pydantic import BaseModel
 app = FastAPI(title="Fleet Management Dashboard")
 
 logs = []
+latest_perf_data = {}
 AUDIT_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "audit")
 AUDIT_FILE = os.path.join(AUDIT_DIR, "audit_log.json")
 
@@ -30,8 +32,17 @@ def get_dashboard():
 
 @app.post("/ingest")
 async def ingest_log(request: Request):
-    data = await request.json()
+    global latest_perf_data
+    try:
+        data = await request.json()
+    except (ClientDisconnect, Exception):
+        # Daemon threads killed mid-send (vehicle process exit) — safe to ignore
+        return {"status": "disconnected"}
     logs.append(data)
+    
+    # Capture performance report events
+    if data.get("event_type") == "perf_report" and data.get("perf_data"):
+        latest_perf_data = data["perf_data"]
     
     # Persistently append to the central audit log JSON array
     try:
@@ -74,8 +85,14 @@ def get_logs():
 
 @app.delete("/logs/clear")
 def clear_logs():
+    global latest_perf_data
     logs.clear()
+    latest_perf_data = {}
     return {"status": "ok"}
+
+@app.get("/perf")
+def get_perf():
+    return latest_perf_data
 
 class DemoRequest(BaseModel):
     script_name: str

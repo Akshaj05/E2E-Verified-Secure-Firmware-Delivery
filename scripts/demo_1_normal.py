@@ -15,7 +15,7 @@ def run_demo():
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     server_process = subprocess.Popen([sys.executable, "main.py", "--server"], env=env, cwd=root_dir)
     # GIving the server some time to start up before the client tries to connect
-    time.sleep(5) 
+    time.sleep(10) 
 
     try:
         subprocess.run([sys.executable, "main.py", "--vehicle"], env=env, cwd=root_dir)
@@ -24,3 +24,4 @@ def run_demo():
 
 if __name__ == "__main__":
     run_demo()
+

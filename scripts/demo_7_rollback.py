@@ -16,7 +16,7 @@ def run_demo():
     env["SKIP_BAD_BATTERY"] = "true"
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     server_process = subprocess.Popen([sys.executable, "main.py", "--server"], env=env, cwd=root_dir)
-    time.sleep(5) 
+    time.sleep(10) 
 
     try:
         env_attack = env.copy()
@@ -27,3 +27,4 @@ def run_demo():
 
 if __name__ == "__main__":
     run_demo()
+

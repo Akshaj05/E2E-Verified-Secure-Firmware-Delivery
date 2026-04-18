@@ -28,10 +28,22 @@ def run_server_node():
     print(f"[*] Starting OTA Server & Dashboard on {OTA_SERVER_HOST}...")
     env = os.environ.copy()
     
+    # Kill any zombie processes holding ports from previous runs (Windows Errno 10048 fix)
+    for port in [OTA_SERVER_PORT, 7001]:
+        try:
+            subprocess.run(
+                ["powershell", "-Command", 
+                 f"(Get-NetTCPConnection -LocalPort {port} -ErrorAction SilentlyContinue).OwningProcess | ForEach-Object {{ Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }}"],
+                capture_output=True, timeout=5
+            )
+        except Exception:
+            pass
+    time.sleep(1)
+    
     #run via uvicorn or pipeline
     #we do this to ensure the server and dashboard run in the same environment with the same secrets but in separate processes for isolation
-    ota_cmd = [sys.executable, "-m", "uvicorn", "server.ota_server:app", "--host", OTA_SERVER_HOST, "--port", str(OTA_SERVER_PORT)]
-    dash_cmd = [sys.executable, "-m", "uvicorn", "dashboard.app:app", "--host", "0.0.0.0", "--port", "7001"]
+    ota_cmd = [sys.executable, "-m", "uvicorn", "server.ota_server:app", "--host", OTA_SERVER_HOST, "--port", str(OTA_SERVER_PORT), "--loop", "asyncio"]
+    dash_cmd = [sys.executable, "-m", "uvicorn", "dashboard.app:app", "--host", "0.0.0.0", "--port", "7001", "--loop", "asyncio"]
     
     ota_p = subprocess.Popen(ota_cmd, env=env)
     dash_p = subprocess.Popen(dash_cmd, env=env)
