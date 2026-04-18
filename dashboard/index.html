@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure OTA Fleet Management Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --panel-bg: rgba(255, 255, 255, 0.03);
+            --panel-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --accent: #3b82f6;
+            --accent-glow: rgba(59, 130, 246, 0.5);
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        body {
+            margin: 0;
+            padding: 2rem;
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--panel-border);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 600;
+            background: linear-gradient(to right, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(96, 165, 250, 0.3);
+        }
+
+        .live-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--success);
+            font-weight: 500;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* Widgets Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .metric-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .metric-title {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        /* Value Colors based on type */
+        #val-ota_start { color: var(--accent); }
+        #val-install_success { color: var(--success); text-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
+        #val-attack_detected { color: var(--danger); text-shadow: 0 0 15px rgba(239, 68, 68, 0.4); }
+        #val-safety_block { color: var(--warning); }
+        #val-rollback { color: #8b5cf6; }
+
+        /* Logs Section */
+        .logs-section {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logs-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--panel-border);
+            padding-bottom: 0.5rem;
+        }
+
+        .logs-header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .logs-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding-right: 0.5rem;
+        }
+
+        /* Custom Scrollbar */
+        .logs-container::-webkit-scrollbar { width: 6px; }
+        .logs-container::-webkit-scrollbar-track { background: transparent; }
+        .logs-container::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
+        .logs-container::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
+
+        .log-item {
+            background: rgba(0, 0, 0, 0.2);
+            border-left: 4px solid var(--text-dim);
+            padding: 0.75rem 1rem;
+            border-radius: 0 0.5rem 0.5rem 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        @keyframes slideIn {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .log-meta {
+            display: flex;
+            gap: 1rem;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        .log-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .badge {
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.75rem;
+        }
+
+        .badge.INFO { background: rgba(59, 130, 246, 0.1); color: var(--accent); }
+        .badge.WARNING { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
+        .badge.ERROR { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+
+        .log-message {
+            color: var(--text-main);
+            word-break: break-word;
+        }
+
+        .log-item.attack_detected { border-left-color: var(--danger); background: rgba(239, 68, 68, 0.05); }
+        .log-item.install_success { border-left-color: var(--success); background: rgba(16, 185, 129, 0.05); }
+        .log-item.safety_block { border-left-color: var(--warning); }
+        .log-item.rollback { border-left-color: #8b5cf6; }
+        
+        #empty-logs {
+            color: var(--text-dim);
+            text-align: center;
+            margin-top: 2rem;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Fleet OTA Command Center</h1>
+            <div class="live-indicator">
+                <div class="dot"></div>
+                LIVE SYSTEM
+            </div>
+        </header>
+
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-title">Total Updates Initiated</div>
+                <div class="metric-value" id="val-ota_start">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">Chunks Corrupted</div>
+                <div class="metric-value" id="val-chunk_corrupted" style="color: var(--danger)">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">Retransmissions Requested</div>
+                <div class="metric-value" id="val-chunk_retransmission_requested" style="color: var(--warning)">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">Update Aborts (Retry Exceeded)</div>
+                <div class="metric-value" id="val-chunk_retry_exceeded" style="color: var(--danger)">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">Successful Installs</div>
+                <div class="metric-value" id="val-install_success">0</div>
+            </div>
+        </div>
+
+        <div class="logs-section">
+            <div class="logs-header">
+                <h2>Real-Time Telemetry Events</h2>
+                <span id="log-count" style="color: var(--text-dim); font-size: 0.9rem;">0 Events</span>
+            </div>
+            <div class="logs-container" id="logs-container">
+                <div id="empty-logs">Waiting for vehicle telemetry...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let lastLogCount = 0;
+
+        function updateMetrics(metricsData) {
+            const m = metricsData.metrics || {};
+            const updateField = (id, val) => {
+                const el = document.getElementById(id);
+                if (el && el.innerText !== String(val)) {
+                    el.innerText = val;
+                    // Flash effect on change
+                    el.parentElement.style.boxShadow = '0 0 15px rgba(255,255,255,0.2)';
+                    setTimeout(() => el.parentElement.style.boxShadow = '', 400);
+                }
+            };
+
+            updateField('val-ota_start', m.ota_start || 0);
+            updateField('val-install_success', m.install_success || 0);
+            updateField('val-chunk_corrupted', m.chunk_corrupted || 0);
+            updateField('val-chunk_retransmission_requested', m.chunk_retransmission_requested || 0);
+            updateField('val-chunk_retry_exceeded', m.chunk_retry_exceeded || 0);
+            
+            document.getElementById('log-count').innerText = `${metricsData.total_logs || 0} Events`;
+        }
+
+        function renderLogs(logs) {
+            const container = document.getElementById('logs-container');
+            const emptyState = document.getElementById('empty-logs');
+            
+            if (logs.length > 0 && emptyState) {
+                emptyState.remove();
+            }
+
+            // Only append new logs
+            if (logs.length > lastLogCount) {
+                const newLogs = logs.slice(lastLogCount);
+                
+                newLogs.forEach(log => {
+                    const div = document.createElement('div');
+                    div.className = `log-item ${log.event_type || ''}`;
+                    
+                    const timeStr = new Date(log.timestamp).toLocaleTimeString();
+                    const levelClass = log.level || 'INFO';
+                    
+                    div.innerHTML = `
+                        <div class="log-meta">
+                            <span class="badge ${levelClass}">${levelClass}</span>
+                            <span>${timeStr}</span>
+                            <span>[${log.logger || 'system'}]</span>
+                            ${log.device_id ? `<span>(${log.device_id})</span>` : ''}
+                        </div>
+                        <div class="log-message">${log.message || JSON.stringify(log)}</div>
+                    `;
+                    
+                    // Add to top of list instead of bottom for better UX
+                    container.insertBefore(div, container.firstChild);
+                });
+                
+                lastLogCount = logs.length;
+            }
+        }
+
+        async function fetchDashboardData() {
+            try {
+                // Fetch metrics
+                const resM = await fetch('/metrics');
+                if (resM.ok) {
+                    const dataM = await resM.json();
+                    updateMetrics(dataM);
+                }
+
+                // Fetch logs
+                const resL = await fetch('/logs');
+                if (resL.ok) {
+                    const dataL = await resL.json();
+                    renderLogs(dataL);
+                }
+            } catch (err) {
+                console.error("Dashboard fetch error:", err);
+            }
+        }
+
+        // Initial fetch
+        fetchDashboardData();
+        
+        // Poll every 1.5 seconds
+        setInterval(fetchDashboardData, 1500);
+    </script>
+</body>
+</html>
