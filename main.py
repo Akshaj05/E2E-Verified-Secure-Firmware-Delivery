@@ -45,7 +45,11 @@ def run_server_node():
     try:
         time.sleep(3)
         print("\n[+] Build Pipeline: Compiling and Signing Firmware...")
-        firmware_data = b"\x01\x02\x03\x04\x05" * 100 
+        
+        # Scenario 3: 10-chunk firmware OTA requirement
+        # 128 bytes per chunk * 10 chunks = 1280 bytes
+        firmware_data = b"\xef\xbe\xad\xde" * 320 
+        
         manifest, chunks = build_firmware_release(firmware_data, "v2.0.0", FACTORY_HSM, FACTORY_HMAC_SECRET)
         print(f"    - Merkle Root (HMAC): {manifest.merkle_root}")
         print(f"    - Ed25519 Verify Key: {FACTORY_HSM.get_public_key_fingerprint()}")
@@ -67,11 +71,26 @@ def run_server_node():
 
 def run_vehicle_node():
     print(f"[*] Booting Vehicle Gateway ECU (Target URL: http://{OTA_SERVER_HOST}:{OTA_SERVER_PORT})...")
-    ecu = GatewayECU("VEH-1", f"http://{OTA_SERVER_HOST}:{OTA_SERVER_PORT}", PINNED_SERVER_PUB_CERT, FACTORY_HMAC_SECRET)
+    FORCE_INTERRUPT_AT = int(os.environ.get("FORCE_INTERRUPT_AT", "-1"))
+    ROGUE_HSM = os.environ.get("ROGUE_HSM", "false").lower() == "true"
+    FORCE_CVE = os.environ.get("FORCE_CVE", "false").lower() == "true"
+    
+    pinned_key = PINNED_SERVER_PUB_CERT
+    if ROGUE_HSM:
+        pinned_key = SimulatedHSM().get_public_key_bytes() # Random rogue key
+        
+    ecu = GatewayECU("VEH-1", f"http://{OTA_SERVER_HOST}:{OTA_SERVER_PORT}", pinned_key, FACTORY_HMAC_SECRET)
 
     if ATTACK_ENABLED:
         print("[!] ATTACKER MODULE ENABLED: Routing OTA through Kali MITM Pipeline")
         ecu.mitm_actor = MITMAttacker(target=ATTACK_TARGET)
+        ecu.mitm_actor.abate_on_retry = os.environ.get("ABATE_ON_RETRY", "true").lower() == "true"
+
+    if FORCE_CVE:
+        # We simulate the server providing an SBOM flagged config
+        # The ECU checks the payload dynamically, but for mock purposes we pass it to ECU state here
+        # Actually our SBOM generator uses an env var or we can pass it
+        os.environ["FORCE_CVE"] = "true" 
 
     # Example 1: Battery constraints block installation
     print("\n[+] ECU executing OTA Request (Battery low)...")
@@ -80,9 +99,13 @@ def run_vehicle_node():
     time.sleep(2)
 
     # Example 2: Normal safe state
-    print("\n[+] ECU executing OTA Request (Safe to flash)...")
+    if not ROGUE_HSM and not FORCE_CVE and FORCE_INTERRUPT_AT == -1:
+        print("\n[+] ECU executing OTA Request (Safe to flash)...")
     req_ok = UpdateRequest(device_id="VEH-1", current_version="v1.0.0", battery_level=100.0, engine_state="IDLE", gear_state="PARK")
-    ecu.execute_ota_workflow("v2.0.0", req_ok)
+    ecu.execute_ota_workflow("v2.0.0", req_ok, force_interrupt_at=FORCE_INTERRUPT_AT)
+    
+    # Allow background log forwarding daemon threads to flush
+    time.sleep(1)
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 from common.logger import SecurityLogger
 import random
+import os
 
 # ---------------------------------------------------------
 # SECURITY RATIONALE:
@@ -16,7 +17,8 @@ class MITMAttacker:
         self.corruption_type = corruption_type
 
     def intercept_chunk(self, index: int, original_data: bytes, retry_count: int = 0) -> bytes:
-        if self.target == "chunk" and index == 1:
+        target_chunk = int(os.environ.get("ATTACK_CHUNK_INDEX", "1"))
+        if self.target == "chunk" and index == target_chunk:
             # Simulate attacker abandoning interference after 1 retry so the system can demonstrate recovery
             if retry_count > 0:
                 self.logger.info(f"MITM Attack abated for chunk {index} on retry.", event_type="attack_abated")

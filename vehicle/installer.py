@@ -1,5 +1,6 @@
-from common.logger import SecurityLogger
 from common.models import UpdateRequest
+from common.logger import SecurityLogger
+import os
 
 # ---------------------------------------------------------
 # SECURITY RATIONALE:
@@ -16,7 +17,7 @@ class ECUInstaller:
         self.logger = logger
         self.golden_image_ver = "v1.0.0" # Factory default
 
-    def execute_install(self, target_version: str, state: UpdateRequest) -> bool:
+    def execute_install(self, target_version: str, state: UpdateRequest, payload: bytes = None) -> bool:
         """
         Safety constraints:
         - state.engine_state MUST be IDLE
@@ -40,12 +41,20 @@ class ECUInstaller:
         # Simulate Flash Write
         self.logger.info("Installation proceeding... Flashing NAND.", device_id=self.device_id)
         
+        if payload:
+            os.makedirs("output", exist_ok=True)
+            output_path = os.path.join("output", f"flashed_firmware_{self.device_id}_{target_version}.bin")
+            with open(output_path, "wb") as f:
+                f.write(payload)
+            self.logger.info(f"Physically wrote binary output to {output_path}", device_id=self.device_id)
+
         # Simulate success + golden image update
         self.golden_image_ver = target_version
         self.logger.info("Installation completed successfully.", event_type="install_success", device_id=self.device_id)
         return True
 
-    def rollback(self):
+    def rollback(self, reason: str = "HASH/SIGNATURE_FAILURE"):
         """Restores the Golden Image."""
-        self.logger.error(f"Performing automatic rollback to Golden Image: {self.golden_image_ver}", event_type="rollback", device_id=self.device_id)
+        self.logger.error(f"Performing automatic rollback to Golden Image: {self.golden_image_ver}")
+        self.logger.error(f"ROLLBACK_TRIGGERED — reason: {reason} — golden image restored", event_type="rollback", device_id=self.device_id)
         self.logger.info("Rollback successful. ECU state restored.", device_id=self.device_id)

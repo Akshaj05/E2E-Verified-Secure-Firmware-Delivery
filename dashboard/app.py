@@ -10,7 +10,11 @@ logs = []
 @app.get("/")
 def get_dashboard():
     index_path = os.path.join(os.path.dirname(__file__), "index.html")
-    return FileResponse(index_path)
+    return FileResponse(index_path, headers={
+        "Cache-Control": "no-cache, no-store, must-revalidate",
+        "Pragma": "no-cache",
+        "Expires": "0"
+    })
 
 @app.post("/ingest")
 async def ingest_log(request: Request):

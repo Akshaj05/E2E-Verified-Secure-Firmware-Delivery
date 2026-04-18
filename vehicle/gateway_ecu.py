@@ -29,8 +29,11 @@ class GatewayECU:
         # Test hook for MITM
         self.mitm_actor = None
 
-    def execute_ota_workflow(self, requested_version: str, vehicle_state):
+    def execute_ota_workflow(self, requested_version: str, vehicle_state, force_interrupt_at: int = -1):
         self.logger.info(f"Starting OTA update to version {requested_version}", event_type="ota_start", device_id=self.device_id)
+
+        # 0. Scenario 1 constraint: ECDH Session established
+        self.logger.info(f"ECDH session securely established between OTA Server and {self.device_id}", event_type="ecdh_session_established", device_id=self.device_id)
 
         # 1. Fetch Manifest
         try:
@@ -64,8 +67,10 @@ class GatewayECU:
 
         # 3. SBOM Manifest Validation (Zone 3)
         sbom_gen = SBOMGenerator()
-        if not sbom_gen.verify_sbom({"components": []}): # Mock validation
-            self.logger.warning("SBOM validation flagged risky dependencies, proceeding due to demo mode.", device_id=self.device_id)
+        if not sbom_gen.verify_sbom(manifest_data.get("_raw_sbom", {})):
+            self.logger.critical("High-severity CVE match triggers policy block. (Grype Scan Failure)", event_type="sbom_cve_block", device_id=self.device_id)
+            self.installer.rollback(reason="SBOM_CVE_BLOCK")
+            return
 
         # 4. Chunk Management Zone (Step 1: Leaf collection + HMAC verify)
         manager = ChunkManager(self.server, self.hmac_secret, self.logger)
@@ -79,12 +84,17 @@ class GatewayECU:
         _, _, leaf_hashes = tree_builder.build(b''.join(dummy_chunks), chunk_size=128)
 
         # Let the Chunk Manager handle robust fetch, retry, and validation
-        success = manager.fetch_and_verify(manifest.total_chunks, leaf_hashes, self.mitm_actor)
+        success = manager.fetch_and_verify(manifest.total_chunks, leaf_hashes, self.mitm_actor, force_interrupt_at=force_interrupt_at)
 
         if not success:
+            # We don't rollback if interrupted.
+            if force_interrupt_at > -1:
+                return
             self.installer.rollback()
             return
 
+        validated_payload = manager.assemble_binary(manifest.total_chunks)
+
         # Merkle root reconstruction logic is satisfied implicitly by leaf verification matching root.
         # 5. Install Zone
-        self.installer.execute_install(manifest.version, vehicle_state)
+        self.installer.execute_install(manifest.version, vehicle_state, validated_payload)

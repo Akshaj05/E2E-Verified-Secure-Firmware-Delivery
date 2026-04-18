@@ -23,7 +23,8 @@ class SBOMGenerator:
         """Constructs the JSON SBOM and computes its digest."""
         sbom_data = {
             "spec_version": "1.4",
-            "components": self.dependencies
+            "components": self.dependencies,
+            "_force_cve_failure": getattr(self, "force_cve", False)
         }
         sbom_str = json.dumps(sbom_data, sort_keys=True)
         sbom_hash = hashlib.sha256(sbom_str.encode('utf-8')).hexdigest()
@@ -41,6 +42,10 @@ class SBOMGenerator:
         # Simulated vulnerability database rule: block out-of-date libcurl
         for comp in sbom_dict.get("components", []):
             if comp.get("name") == "libcurl" and comp.get("version") == "7.88.1":
+                # Simulated detection! In a real scenario we'd block this.
+                if sbom_dict.get("_force_cve_failure", False):
+                    # Mocking Grype CVE scanner failure
+                    return False
                 # Simulated detection! In a real scenario we'd block this.
                 # However for the demo, we assume the factory "blessed" it 
                 # but we still log it. For rigid security, return False.

@@ -17,7 +17,7 @@ class SecurityLogger:
     def __init__(self, component_name):
         self.component = component_name
 
-    def log(self, level, message, event_type=None, device_id=None):
+    def log(self, level, message, event_type=None, device_id=None, **kwargs):
         payload = {
             "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat(),
             "level": level,
@@ -28,6 +28,9 @@ class SecurityLogger:
             payload["event_type"] = event_type
         if device_id:
             payload["device_id"] = device_id
+        
+        # Append any extra telemetry metrics like chunk_id
+        payload.update(kwargs)
 
         # Local output
         print(json.dumps(payload))

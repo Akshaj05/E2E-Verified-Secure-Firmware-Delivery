@@ -45,7 +45,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid var(--panel-border);
         }
@@ -88,7 +88,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
         }
 
         .metric-card {
@@ -99,12 +99,6 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .metric-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 0 15px var(--accent-glow);
-            border-color: rgba(255, 255, 255, 0.2);
         }
 
         .metric-title {
@@ -125,12 +119,81 @@
             gap: 0.5rem;
         }
 
-        /* Value Colors based on type */
         #val-ota_start { color: var(--accent); }
         #val-install_success { color: var(--success); text-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
         #val-attack_detected { color: var(--danger); text-shadow: 0 0 15px rgba(239, 68, 68, 0.4); }
         #val-safety_block { color: var(--warning); }
-        #val-rollback { color: #8b5cf6; }
+
+        /* Scenario 3: 10-Chunk Grid Viewer */
+        .chunk-viewer {
+            background: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .chunk-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .chunk-list {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 0.5rem;
+        }
+        .chunk-box {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--panel-border);
+            border-radius: 6px;
+            padding: 1rem 0;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .cb-PENDING { border-color: var(--panel-border); }
+        .cb-DOWNLOADED { border-color: var(--accent); background: rgba(59, 130, 246, 0.2); }
+        .cb-VERIFIED { border-color: var(--success); background: rgba(16, 185, 129, 0.2); box-shadow: 0 0 10px rgba(16,185,129,0.3); }
+        .cb-CORRUPTED { border-color: var(--danger); background: rgba(239, 68, 68, 0.2); animation: shake 0.4s; }
+        .cb-RETRANSMIT { border-color: var(--warning); background: rgba(245, 158, 11, 0.2); }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(5px); }
+            50% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+            100% { transform: translateX(0); }
+        }
+
+        /* Scenario 6: SBOM vulnerability Tracker */
+        .sbom-viewer {
+            background: rgba(239, 68, 68, 0.05);
+            border: 1px solid var(--danger);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            backdrop-filter: blur(12px);
+            display: none; /* hidden until triggered */
+        }
+        .sbom-viewer h2 {
+            margin: 0 0 0.5rem 0;
+            color: var(--danger);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .cve-item {
+            background: rgba(0,0,0,0.5);
+            padding: 0.75rem;
+            border-left: 4px solid var(--danger);
+            border-radius: 4px;
+            font-family: monospace;
+            color: #f8fafc;
+        }
 
         /* Logs Section */
         .logs-section {
@@ -139,7 +202,6 @@
             border-radius: 1rem;
             padding: 1.5rem;
             backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             height: 400px;
             display: flex;
             flex-direction: column;
@@ -152,12 +214,6 @@
             margin-bottom: 1rem;
             border-bottom: 1px solid var(--panel-border);
             padding-bottom: 0.5rem;
-        }
-
-        .logs-header h2 {
-            margin: 0;
-            font-size: 1.2rem;
-            font-weight: 500;
             color: var(--text-main);
         }
 
@@ -170,12 +226,9 @@
             padding-right: 0.5rem;
         }
 
-        /* Custom Scrollbar */
         .logs-container::-webkit-scrollbar { width: 6px; }
-        .logs-container::-webkit-scrollbar-track { background: transparent; }
         .logs-container::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 4px; }
-        .logs-container::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.2); }
-
+        
         .log-item {
             background: rgba(0, 0, 0, 0.2);
             border-left: 4px solid var(--text-dim);
@@ -191,51 +244,23 @@
             gap: 0.3rem;
         }
 
-        @keyframes slideIn {
-            to { opacity: 1; transform: translateX(0); }
-        }
+        @keyframes slideIn { to { opacity: 1; transform: translateX(0); } }
 
-        .log-meta {
-            display: flex;
-            gap: 1rem;
-            color: var(--text-dim);
-            font-size: 0.8rem;
-        }
-
-        .log-meta span {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        
-        .badge {
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 600;
-            font-size: 0.75rem;
-        }
-
+        .log-meta { display: flex; gap: 1rem; color: var(--text-dim); font-size: 0.8rem; }
+        .badge { padding: 2px 6px; border-radius: 4px; font-weight: 600; font-size: 0.75rem; }
         .badge.INFO { background: rgba(59, 130, 246, 0.1); color: var(--accent); }
         .badge.WARNING { background: rgba(245, 158, 11, 0.1); color: var(--warning); }
         .badge.ERROR { background: rgba(239, 68, 68, 0.1); color: var(--danger); }
+        .badge.CRITICAL { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border: 1px solid var(--danger); }
 
-        .log-message {
-            color: var(--text-main);
-            word-break: break-word;
-        }
+        .log-message { color: var(--text-main); word-break: break-word; }
 
-        .log-item.attack_detected { border-left-color: var(--danger); background: rgba(239, 68, 68, 0.05); }
-        .log-item.install_success { border-left-color: var(--success); background: rgba(16, 185, 129, 0.05); }
+        .log-item.attack_detected { border-left-color: var(--danger); }
+        .log-item.install_success { border-left-color: var(--success); }
         .log-item.safety_block { border-left-color: var(--warning); }
-        .log-item.rollback { border-left-color: #8b5cf6; }
+        .log-item.rollback, .log-item.sbom_cve_block { border-left-color: #8b5cf6; background: rgba(139, 92, 246, 0.1); }
         
-        #empty-logs {
-            color: var(--text-dim);
-            text-align: center;
-            margin-top: 2rem;
-            font-style: italic;
-        }
-
+        #empty-logs { color: var(--text-dim); text-align: center; margin-top: 2rem; font-style: italic; }
     </style>
 </head>
 <body>
@@ -263,8 +288,8 @@
                 <div class="metric-value" id="val-chunk_retransmission_requested" style="color: var(--warning)">0</div>
             </div>
             <div class="metric-card">
-                <div class="metric-title">Update Aborts (Retry Exceeded)</div>
-                <div class="metric-value" id="val-chunk_retry_exceeded" style="color: var(--danger)">0</div>
+                <div class="metric-title">Update Aborts (Fail/Rollback)</div>
+                <div class="metric-value" id="val-rollback" style="color: #8b5cf6">0</div>
             </div>
             <div class="metric-card">
                 <div class="metric-title">Successful Installs</div>
@@ -272,10 +297,29 @@
             </div>
         </div>
 
+        <!-- Firmware SBOM Scanner Alert (Scenario 6) -->
+        <div class="sbom-viewer" id="sbom-viewer">
+            <h2>⚠️ Grype CVE Scan Failure</h2>
+            <div class="cve-item" id="cve-details">
+                [CRITICAL] Component: libcurl @ 7.88.1 | CVE-2023-38545 | HIGH | OTA Installation Blocked
+            </div>
+        </div>
+
+        <!-- Real-time Chunk Grid (Scenario 3 & 4) -->
+        <div class="chunk-viewer">
+            <div class="chunk-header">
+                <h3 style="margin:0; color:var(--text-main);">Live Firmware Payload Validatior (10 Chunks)</h3>
+                <button onclick="resetChunks()" style="background:var(--panel-border); color:var(--text-main); border:none; padding:4px 12px; border-radius:4px; cursor:pointer;">Reset Grid</button>
+            </div>
+            <div class="chunk-list" id="chunk-list">
+                <!-- JS will inject 10 chunks here -->
+            </div>
+        </div>
+
         <div class="logs-section">
             <div class="logs-header">
-                <h2>Real-Time Telemetry Events</h2>
-                <span id="log-count" style="color: var(--text-dim); font-size: 0.9rem;">0 Events</span>
+                <h2 style="margin:0">Real-Time Telemetry Events</h2>
+                <span id="log-count" style="font-size: 0.9rem;">0 Events</span>
             </div>
             <div class="logs-container" id="logs-container">
                 <div id="empty-logs">Waiting for vehicle telemetry...</div>
@@ -285,6 +329,24 @@
 
     <script>
         let lastLogCount = 0;
+        
+        // Initialize 10 chunks
+        const chunkList = document.getElementById('chunk-list');
+        for(let i=0; i<10; i++) {
+            const box = document.createElement('div');
+            box.className = 'chunk-box cb-PENDING';
+            box.id = `chunk-${i}`;
+            box.innerText = `#${i}`;
+            chunkList.appendChild(box);
+        }
+
+        function resetChunks() {
+            for(let i=0; i<10; i++) {
+                const box = document.getElementById(`chunk-${i}`);
+                if (box) box.className = 'chunk-box cb-PENDING';
+            }
+            document.getElementById('sbom-viewer').style.display = 'none';
+        }
 
         function updateMetrics(metricsData) {
             const m = metricsData.metrics || {};
@@ -292,7 +354,6 @@
                 const el = document.getElementById(id);
                 if (el && el.innerText !== String(val)) {
                     el.innerText = val;
-                    // Flash effect on change
                     el.parentElement.style.boxShadow = '0 0 15px rgba(255,255,255,0.2)';
                     setTimeout(() => el.parentElement.style.boxShadow = '', 400);
                 }
@@ -302,9 +363,43 @@
             updateField('val-install_success', m.install_success || 0);
             updateField('val-chunk_corrupted', m.chunk_corrupted || 0);
             updateField('val-chunk_retransmission_requested', m.chunk_retransmission_requested || 0);
-            updateField('val-chunk_retry_exceeded', m.chunk_retry_exceeded || 0);
+            // Combine failures and rollbacks into aborts
+            const aborts = (m.rollback || 0) + (m.chunk_retry_exceeded || 0) + (m.signature_failure || 0);
+            updateField('val-rollback', aborts);
             
             document.getElementById('log-count').innerText = `${metricsData.total_logs || 0} Events`;
+        }
+
+        function processLogEvent(log) {
+            // Update visual chunk grid
+            if (log.chunk_id !== undefined && log.chunk_id >= 0 && log.chunk_id < 10) {
+                const box = document.getElementById(`chunk-${log.chunk_id}`);
+                if (box) {
+                    if (log.event_type === "chunk_downloaded") {
+                        box.className = 'chunk-box cb-DOWNLOADED';
+                    } else if (log.event_type === "chunk_corrupted") {
+                        box.className = 'chunk-box cb-CORRUPTED';
+                    } else if (log.event_type === "chunk_retransmission_requested") {
+                        box.className = 'chunk-box cb-RETRANSMIT';
+                    } else if (log.event_type === "chunk_verified" || log.event_type === "chunk_verified_resume") {
+                        box.className = 'chunk-box cb-VERIFIED';
+                    }
+                }
+            }
+            
+            // SBOM fail (Scenario 6)
+            if (log.event_type === "sbom_cve_block") {
+                document.getElementById('sbom-viewer').style.display = 'block';
+            }
+            if (log.event_type === "ota_start") {
+                // Dim the old ones on new update start for visual clarity
+                for(let i=0; i<10; i++) {
+                    const box = document.getElementById(`chunk-${i}`);
+                    if(!box.className.includes("VERIFIED")) {
+                        box.className = 'chunk-box cb-PENDING';
+                    }
+                }
+            }
         }
 
         function renderLogs(logs) {
@@ -315,7 +410,12 @@
                 emptyState.remove();
             }
 
-            // Only append new logs
+            // Handle Server Restarts (if logs abruptly reset)
+            if (logs.length < lastLogCount) {
+                container.innerHTML = '';
+                lastLogCount = 0;
+            }
+
             if (logs.length > lastLogCount) {
                 const newLogs = logs.slice(lastLogCount);
                 
@@ -336,8 +436,8 @@
                         <div class="log-message">${log.message || JSON.stringify(log)}</div>
                     `;
                     
-                    // Add to top of list instead of bottom for better UX
                     container.insertBefore(div, container.firstChild);
+                    processLogEvent(log); // Handle UI specific events
                 });
                 
                 lastLogCount = logs.length;
@@ -346,29 +446,18 @@
 
         async function fetchDashboardData() {
             try {
-                // Fetch metrics
                 const resM = await fetch('/metrics');
-                if (resM.ok) {
-                    const dataM = await resM.json();
-                    updateMetrics(dataM);
-                }
+                if (resM.ok) updateMetrics(await resM.json());
 
-                // Fetch logs
                 const resL = await fetch('/logs');
-                if (resL.ok) {
-                    const dataL = await resL.json();
-                    renderLogs(dataL);
-                }
+                if (resL.ok) renderLogs(await resL.json());
             } catch (err) {
                 console.error("Dashboard fetch error:", err);
             }
         }
 
-        // Initial fetch
         fetchDashboardData();
-        
-        // Poll every 1.5 seconds
-        setInterval(fetchDashboardData, 1500);
+        setInterval(fetchDashboardData, 1000); // Poll slightly faster for UI responsiveness
     </script>
 </body>
 </html>
