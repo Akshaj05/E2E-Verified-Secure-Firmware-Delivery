@@ -14,7 +14,6 @@ class Manifest(BaseModel):
     metadata_signature: str
 
 # UpdateRequest defines the structure of the OTA update request sent by the vehicle to the server
-class UpdateRequest(BaseModel):
     device_id: str
     current_version: str
     battery_level: float

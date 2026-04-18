@@ -37,27 +37,7 @@ Built with Python, FastAPI, and a real-time fleet management dashboard.
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                        DEMO SCRIPTS (scripts/)                      │
-│  Each script spawns a Server + Vehicle node with scenario-specific  │
-│  environment variables to simulate different attack/failure modes   │
-└──────────────┬──────────────────────────────────┬───────────────────┘
-               │                                  │
-       main.py --server                   main.py --vehicle
-               │                                  │
-    ┌──────────▼──────────┐            ┌──────────▼──────────┐
-    │   CLOUD NODE        │            │   VEHICLE NODE      │
-    │                     │            │                     │
-    │  Build Pipeline     │            │  Gateway ECU        │
-    │   ├─ SBOM Generator │◄──────────►│   ├─ Sig Verify     │
-    │   ├─ Merkle Tree    │  manifest  │   ├─ SBOM Audit     │
-    │   └─ HSM Signing    │  + chunks  │   ├─ Chunk Manager  │
-    │                     │            │   │   └─ MITM Actor  │
-    │  OTA Server (:7000) │            │   └─ ECU Installer  │
-    │  Dashboard  (:7001) │◄───logs────│       └─ Rollback   │
-    └─────────────────────┘            └─────────────────────┘
-```
+![Architecture Diagram](images/Architecture_Diagram.png)
 
 ---
 
