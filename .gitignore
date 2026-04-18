@@ -23,3 +23,5 @@ tree.txt
 .vscode/
 .idea/
 .DS_Store
+
+audit/audit_log.json
