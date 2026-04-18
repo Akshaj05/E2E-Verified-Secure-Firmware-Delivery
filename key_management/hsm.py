@@ -3,11 +3,9 @@ from cryptography.hazmat.primitives.asymmetric import ed25519
 from cryptography.hazmat.primitives import serialization
 
 # ---------------------------------------------------------
-# SECURITY RATIONALE:
-# Hardware Security Module (HSM) isolation simulates physically
-# separate infrastructure. The private key never leaves this class.
-# Certificate pinning simulates factory-flashing the public key
-# fingerprint directly to the ECU's read-only memory.
+#The HSM is simulated in this demonstration which would normally be a separate hardware component.
+#It securely stores the private key and performs signing operations without exposing the key material.
+#The content never leaves this class, and only the public key is distributed for verification.
 # ---------------------------------------------------------
 
 class SimulatedHSM:
@@ -26,6 +24,7 @@ class SimulatedHSM:
 
     def get_public_key_bytes(self) -> bytes:
         """Exports the public key for distribution."""
+        # serialization used for consistent byte format
         return self.public_key.public_bytes(
             encoding=serialization.Encoding.Raw,
             format=serialization.PublicFormat.Raw

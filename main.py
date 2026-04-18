@@ -16,26 +16,20 @@ from key_management.hsm import SimulatedHSM
 from vehicle.gateway_ecu import GatewayECU
 from attacker.mitm import MITMAttacker
 
-# ---------------------------------------------------------
-# SECURITY RATIONALE (ORCHESTRATOR):
-# This main.py script serves as the isolated bootstrapping 
-# boundary for either the Cloud (OTA Server) or the Cyber-Physical 
-# system (Vehicle). 
-# Note: HMAC Keys and Server Certificates would be strictly provisioned
-# securely in the factory out-of-band in reality.
-# ---------------------------------------------------------
+# main.py is the Orchestrator entry point for OTA server or vehicle runtime.
+# In production, HMAC Keys and Server Certificates are securely provisioned out-of-band.
 
 # Global simulated factory secrets for demo
 FACTORY_HMAC_SECRET = b"super_secret_hmac_key_for_all_ecu"
-FACTORY_HSM = SimulatedHSM(seed=b"deterministic_demo_hsm_seed_for_multi_proc") 
+FACTORY_HSM = SimulatedHSM(seed=b"deterministic_hsm_seed_for_multi_proc") 
 PINNED_SERVER_PUB_CERT = FACTORY_HSM.get_public_key_bytes()
 
 def run_server_node():
     print(f"[*] Starting OTA Server & Dashboard on {OTA_SERVER_HOST}...")
     env = os.environ.copy()
     
-    # Actually run Uvicorn manually here or rely on the pipeline.
-    # The requirement said to isolate components.
+    #run via uvicorn or pipeline
+    #we do this to ensure the server and dashboard run in the same environment with the same secrets but in separate processes for isolation
     ota_cmd = [sys.executable, "-m", "uvicorn", "server.ota_server:app", "--host", OTA_SERVER_HOST, "--port", str(OTA_SERVER_PORT)]
     dash_cmd = [sys.executable, "-m", "uvicorn", "dashboard.app:app", "--host", "0.0.0.0", "--port", "7001"]
     
@@ -55,6 +49,8 @@ def run_server_node():
         print(f"    - Ed25519 Verify Key: {FACTORY_HSM.get_public_key_fingerprint()}")
 
         print("\n[+] Publishing Firmware to Distribution Server...")
+        #chunks_b64 is responsible for encoding binary chunks into base64 strings so that they can be safely transmitted in JSON format over HTTP
+        #we convert the binary data into a text representation that can be included in the JSON payload sent to the OTA server.
         chunks_b64 = [base64.b64encode(c).decode("utf-8") for c in chunks]
         requests.post(f"http://{OTA_SERVER_HOST}:{OTA_SERVER_PORT}/upload", json={
             "manifest": manifest.model_dump(),
@@ -62,7 +58,6 @@ def run_server_node():
         })
         
         print("\n[!] Servers are live. Run vehicular node in another terminal via --vehicle.")
-        print("[!] Press CTRL+C to terminate the Cloud Node.")
         ota_p.wait()
     except KeyboardInterrupt:
         ota_p.terminate()
@@ -92,14 +87,14 @@ def run_vehicle_node():
         # Actually our SBOM generator uses an env var or we can pass it
         os.environ["FORCE_CVE"] = "true" 
 
-    # Example 1: Battery constraints block installation
+    #Battery constraints block installation
     if os.environ.get("SKIP_BAD_BATTERY", "false").lower() != "true":
         print("\n[+] ECU executing OTA Request (Battery low)...")
         req_bad = UpdateRequest(device_id="VEH-1", current_version="v1.0.0", battery_level=45.0, engine_state="IDLE", gear_state="PARK")
         ecu.execute_ota_workflow("v2.0.0", req_bad)
         time.sleep(2)
 
-    # Example 2: Normal safe state
+    #Normal safe state
     if not ROGUE_HSM and not FORCE_CVE and FORCE_INTERRUPT_AT == -1:
         print("\n[+] ECU executing OTA Request (Safe to flash)...")
     req_ok = UpdateRequest(device_id="VEH-1", current_version="v1.0.0", battery_level=100.0, engine_state="IDLE", gear_state="PARK")

@@ -14,6 +14,7 @@ def run_demo():
     env["SKIP_BAD_BATTERY"] = "true"
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     server_process = subprocess.Popen([sys.executable, "main.py", "--server"], env=env, cwd=root_dir)
+    # GIving the server some time to start up before the client tries to connect
     time.sleep(5) 
 
     try:

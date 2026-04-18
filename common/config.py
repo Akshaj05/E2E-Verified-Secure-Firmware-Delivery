@@ -1,13 +1,6 @@
 import os
 
-# ---------------------------------------------------------
-# SECURITY RATIONALE:
-# Hardcoding secrets/URLs in source code is an anti-pattern.
-# This config module consolidates all environment-driven 
-# parameters, ensuring secrets can be injected securely via 
-# orchestrated environment variables (e.g., K8s secrets) 
-# and never checked into version control.
-# ---------------------------------------------------------
+# Centralized config: load secrets/URLs from environment variables (e.g., K8s secrets), not source control.
 
 OTA_SERVER_HOST = os.getenv("OTA_SERVER_HOST", "127.0.0.1")
 OTA_SERVER_PORT = int(os.getenv("OTA_SERVER_PORT", "7000"))
@@ -24,3 +17,4 @@ ATTACK_TARGET = os.getenv("ATTACK_TARGET", "chunk") # can be 'chunk', 'manifest'
 
 # HSM config for pinning
 FACTORY_PROVISIONED_PIN = os.getenv("FACTORY_PROVISIONED_PIN", "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855")
+# e3b0c44.. is SHA-256 hash of an empty string used as a placeholder for the factory-provisioned public key fingerprint.

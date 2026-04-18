@@ -32,7 +32,7 @@ class MerkleTreeBuilder:
             h = hmac.new(self.secret, c, hashlib.sha256).hexdigest()
             leaf_hashes.append(h)
 
-        # 2. Reconstruct root (simplified to just folding leaves for this implementation)
+        # 2. Reconstruct root
         # Deep binary trees can be used for very large structures, but hashing the concatenated
         # leaf hashes is sufficient to ensure all chunks are present in specific order.
         root_data = "".join(leaf_hashes).encode('utf-8')

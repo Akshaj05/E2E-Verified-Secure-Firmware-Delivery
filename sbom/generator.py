@@ -70,7 +70,6 @@ class SBOMGenerator:
 
             if name in cve_db and version in cve_db[name]:
                 cve_meta = cve_db[name][version]
-                # In production, we only block on HIGH/CRITICAL severity.
                 if cve_meta and cve_meta.get("severity") in ["HIGH", "CRITICAL"]:
                     violations.append({
                         "name": name,

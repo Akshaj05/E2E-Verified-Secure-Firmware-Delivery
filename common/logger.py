@@ -4,14 +4,7 @@ import requests
 import threading
 from .config import DASHBOARD_URL
 
-# ---------------------------------------------------------
-# SECURITY RATIONALE:
-# A robust, structured logging engine is vital for 
-# cybersecurity monitoring. Raw text is hard to parse for SIEMs.
-# This logger wraps events in JSON, appending timestamps,
-# and asynchronously forwards critical telemetry to the dashboard
-# so that fleet managers are immediately alerted to MITM attacks.
-# ---------------------------------------------------------
+# Structured JSON logging for SIEM integration with timestamps and async alerting for security events.
 
 class SecurityLogger:
     def __init__(self, component_name):

@@ -5,12 +5,11 @@ from key_management.hsm import SimulatedHSM
 from signing.authority import SigningAuthority
 from typing import Tuple, List
 
-# ---------------------------------------------------------
-# SECURITY RATIONALE:
-# The secure build pipeline operates in a trusted zone (e.g., CI/CD).
-# It enforces reproducible builds and locks down the artifacts
-# by binding the Merkle Hash tree and SBOM tightly to the firmware version.
-# ---------------------------------------------------------
+#This builder.py is responsible for returning the manifest and chunks after building the firmware release. 
+#It simulates a reproducible build pipeline that includes hashing the firmware into a Merkle Tree, \
+# generating SBOM, and requesting a signature from the HSM. 
+# The function takes in the firmware data, version, HSM instance, HMAC secret, and chunk size as parameters 
+# and returns the manifest and list of firmware chunks.
 
 def build_firmware_release(
     firmware_data: bytes, 
