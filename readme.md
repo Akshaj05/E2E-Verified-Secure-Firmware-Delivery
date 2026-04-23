@@ -4,7 +4,7 @@ A secure and distributed Over-The-Air (OTA) firmware update system for automotiv
 
 Built with Python, FastAPI, and a real-time fleet management dashboard.
 
-Note: this project will run locally always, to reduce possible vulnerabilities, and even in a practical scenario, the project will never be deployed openly. This was made as a Hackathon project for the MAHE mobility challenge hosted by MITM, MAHE, Bangalore. Winning 2nd place in the Cybersescurity track.
+#### This project will run locally always, to reduce possible vulnerabilities, and even in a practical scenario, the project will never be deployed openly. This was made as a Hackathon project for the MAHE mobility challenge hosted by MITM, MAHE, Bangalore. Winning 2nd place in the Cybersescurity track.
 ---
 
 ## Table of Contents
@@ -132,7 +132,7 @@ source venv/bin/activate    # macOS/Linux
 ```bash
 pip install -r requirements.txt
 ```
-note: you can do -g as well, or if you have them installed, this step can be skipped
+#### note: you can do -g as well, or if you have them installed, this step can be skipped
 ---
 
 ## Usage
