@@ -8,7 +8,18 @@ from typing import List, Optional
 # Manifest defines the structure of the firmware manifest that the OTA server will use to verify and manage firmware updates.
 class Manifest(BaseModel):
     version: str
+    # Monotonic release counter, part of the signed payload (see
+    # signing/authority.py). Lets the ECU detect and reject a rollback/freeze
+    # attack -- replaying an old, VALIDLY-signed manifest -- which a version
+    # *string* alone can't reliably do.
+    build_number: int
     merkle_root: str
+    # Ordered per-chunk HMAC digests the merkle_root commits to. Shipped
+    # alongside the manifest so the ECU can verify
+    # reconstruct_root(leaf_hashes) == merkle_root (the value actually
+    # signed) before trusting any of them for chunk verification, instead of
+    # re-deriving its own "trusted" hashes from an unauthenticated fetch.
+    leaf_hashes: List[str]
     total_chunks: int
     sbom_hash: str
     metadata_signature: str

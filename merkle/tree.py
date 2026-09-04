@@ -7,9 +7,20 @@ from typing import List, Tuple
 # Why HMAC-SHA256 instead of pure SHA-256?
 # An attacker intercepting an OTA chunk can substitute it with
 # malicious bytes and compute the raw SHA-256 of their payload.
-# By generating the Merkle tree leaves using HMAC with a secret 
+# By generating the leaf digests using HMAC with a secret
 # factory key, the attacker cannot forge valid leaf hashes.
-# This strongly binds data integrity to origin authenticity.
+# This strongly binds data integrity to origin authenticity --
+# but only once the caller actually checks reconstruct_root(leaf_hashes)
+# against the signed manifest.merkle_root (see gateway_ecu.py); the
+# binding does nothing on its own if nothing enforces it.
+#
+# NOTE ON NAMING: despite the class name, this is NOT a branching binary
+# Merkle tree with per-chunk inclusion proofs -- it's a single-level
+# ordered digest: HMAC(secret, leaf_0 || leaf_1 || ... || leaf_n). That's
+# sufficient to bind "all N chunks, in this order" to one signed root, but
+# unlike a real Merkle tree it can't verify one chunk without having every
+# leaf hash. Fine at this scale (10 chunks); would need a real tree to
+# scale to verifying one component out of a large set independently.
 # ---------------------------------------------------------
 
 class MerkleTreeBuilder:

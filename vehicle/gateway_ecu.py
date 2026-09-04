@@ -2,11 +2,11 @@ import requests
 from common.logger import SecurityLogger
 from common.models import Manifest
 from signing.authority import SigningAuthority
+from merkle.tree import MerkleTreeBuilder
 from vehicle.chunk_manager import ChunkManager
 from vehicle.installer import ECUInstaller
 from sbom.generator import SBOMGenerator
 import time
-import base64
 import os
 import json
 import tracemalloc
@@ -76,10 +76,11 @@ class GatewayECU:
         # 2. Cryptographic Zone Step 2: Ed25519 Signature Verification
         # Verifies the origin of the manifest (protects against rogue servers & manifest replacement)
         is_valid = SigningAuthority.verify_manifest_signature(
-            self.pinned_pub, 
-            manifest.version, 
-            manifest.merkle_root, 
-            manifest.sbom_hash, 
+            self.pinned_pub,
+            manifest.version,
+            manifest.build_number,
+            manifest.merkle_root,
+            manifest.sbom_hash,
             manifest.metadata_signature
         )
         crypto_end = time.perf_counter()
@@ -100,6 +101,31 @@ class GatewayECU:
             # ---- END PERF ----
             time.sleep(0.5)
             self.logger.critical("UPDATE ABORTED — Rolling back to Golden Image v1.0.0. ECU integrity preserved.", event_type="update_abort", device_id=self.device_id)
+            self._emit_perf_report(workflow_start)
+            return
+
+        # 2b. Rollback / Freeze-Attack Protection
+        # A signature check alone doesn't stop an attacker from replaying an
+        # OLD manifest that was validly signed at the time -- it still passes
+        # step 2 above. Comparing against the last build actually installed
+        # (persisted by the installer) catches that class of attack, which
+        # requires no key compromise at all, only replay of an authentic
+        # artifact the vehicle has already moved past.
+        last_build = self.installer.golden_image_build
+        if manifest.build_number <= last_build:
+            threat_detect_time = time.perf_counter_ns()
+            self.logger.critical(
+                f"ROLLBACK ATTACK DETECTED — manifest build {manifest.build_number} ({manifest.version}) "
+                f"<= last installed build {last_build} ({self.installer.golden_image_ver}). Signature was valid; "
+                f"this is a replayed/old artifact, not a forgery. Rejecting.",
+                event_type="rollback_attack_blocked", device_id=self.device_id
+            )
+            rollback_start = time.perf_counter()
+            self.installer.rollback(reason="ROLLBACK_ATTACK_DETECTED")
+            rollback_end = time.perf_counter()
+            self.perf["rollback_execution_time_ms"] = round((rollback_end - rollback_start) * 1000, 2)
+            threat_halt_time = time.perf_counter_ns()
+            self.perf["threat_mitigation_latency_us"] = round((threat_halt_time - threat_detect_time) / 1000, 2)
             self._emit_perf_report(workflow_start)
             return
 
@@ -159,22 +185,37 @@ class GatewayECU:
                 self._emit_perf_report(workflow_start)
                 return
 
-        # 4. Chunk Management Zone (Step 1: Leaf collection + HMAC verify)
-        manager = ChunkManager(self.server, self.hmac_secret, self.logger)
-        
-        # We need the leaf hashes. In a real system, download them. 
-        # For mock, we build them since we have the factory secret (for simplicity).
-        tree_builder = __import__('merkle').tree.MerkleTreeBuilder(self.hmac_secret)
-        
-        # Dummy fetch to get exact leaves for the manager
-        dummy_chunks = [base64.b64decode(requests.get(f"{self.server}/chunk/{i}").json()) for i in range(manifest.total_chunks)]
-        _, _, leaf_hashes = tree_builder.build(b''.join(dummy_chunks), chunk_size=128)
-        
-        # Calculate firmware binary size
-        firmware_size = sum(len(c) for c in dummy_chunks)
+        # 3b. Merkle Root Binding Check
+        # manifest.leaf_hashes travels with the manifest (and can be tampered
+        # in transit like anything else), so it must never be trusted on its
+        # own. Instead, recompute the root from it and require that it match
+        # manifest.merkle_root -- the value actually covered by the Ed25519
+        # signature above. Forging a leaf_hashes list that both (a) matches
+        # attacker-controlled chunk bytes and (b) reconstructs to the
+        # legitimately-signed root would require the shared HMAC secret,
+        # which an on-the-wire attacker does not have.
+        tree_builder = MerkleTreeBuilder(self.hmac_secret)
+        reconstructed_root = tree_builder.reconstruct_root(manifest.leaf_hashes)
+        if reconstructed_root != manifest.merkle_root or len(manifest.leaf_hashes) != manifest.total_chunks:
+            threat_detect_time = time.perf_counter_ns()
+            self.logger.critical(
+                "MERKLE ROOT MISMATCH — leaf hash list does not reconstruct to the signed root. "
+                "Manifest integrity compromised.", event_type="merkle_root_mismatch", device_id=self.device_id
+            )
+            rollback_start = time.perf_counter()
+            self.installer.rollback(reason="MERKLE_ROOT_MISMATCH")
+            rollback_end = time.perf_counter()
+            self.perf["rollback_execution_time_ms"] = round((rollback_end - rollback_start) * 1000, 2)
+            threat_halt_time = time.perf_counter_ns()
+            self.perf["threat_mitigation_latency_us"] = round((threat_halt_time - threat_detect_time) / 1000, 2)
+            self._emit_perf_report(workflow_start)
+            return
 
-        # Let the Chunk Manager handle robust fetch, retry, and validation
-        success = manager.fetch_and_verify(manifest.total_chunks, leaf_hashes, self.mitm_actor, force_interrupt_at=force_interrupt_at)
+        # 4. Chunk Management Zone: fetch each chunk and verify it against the
+        # manifest-provided (now root-verified) leaf hash — no separate,
+        # unauthenticated "dummy fetch" needed to derive trusted hashes.
+        manager = ChunkManager(self.server, self.hmac_secret, self.logger)
+        success = manager.fetch_and_verify(manifest.total_chunks, manifest.leaf_hashes, self.mitm_actor, force_interrupt_at=force_interrupt_at)
         
         # Collect chunk-level perf metrics from manager
         self.perf.update(manager.perf)
@@ -195,7 +236,8 @@ class GatewayECU:
             return
 
         validated_payload = manager.assemble_binary(manifest.total_chunks)
-        
+        firmware_size = len(validated_payload)
+
         # Compute payload-to-metadata ratio
         metadata_size = manifest_json_size + sbom_json_size
         self.perf["firmware_payload_bytes"] = firmware_size
@@ -203,11 +245,10 @@ class GatewayECU:
         ratio = round(firmware_size / metadata_size, 2) if metadata_size > 0 else 0
         self.perf["payload_to_metadata_ratio"] = f"{ratio}:1"
 
-        # Merkle root reconstruction logic is satisfied implicitly by leaf verification matching root.
         # 5. Install Zone
         # ---- PERF: I/O Throughput ----
         io_start = time.perf_counter()
-        installed = self.installer.execute_install(manifest.version, vehicle_state, validated_payload)
+        installed = self.installer.execute_install(manifest.version, manifest.build_number, vehicle_state, validated_payload)
         io_end = time.perf_counter()
         io_duration = io_end - io_start
         if io_duration > 0:

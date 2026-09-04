@@ -2,6 +2,7 @@ import argparse
 import sys
 import subprocess
 import os
+import shutil
 import requests
 import base64
 import time
@@ -43,7 +44,17 @@ def run_server_node():
         except Exception:
             pass
     time.sleep(1)
-    
+
+    # Each demo is meant to be self-contained (README: "each demo can also be
+    # run standalone"). Vehicle-side persisted state (chunk resume progress,
+    # installed-build history) lives in output/ and must not leak between
+    # separate demo runs -- e.g. a stale "already installed build 2" record
+    # left over from a previous demo would make a later demo's own
+    # legitimate install look like a rollback attempt. A server boot is the
+    # natural "a new demo scenario begins" point, so reset it here.
+    output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "output")
+    shutil.rmtree(output_dir, ignore_errors=True)
+
     #run via uvicorn or pipeline
     #we do this to ensure the server and dashboard run in the same environment with the same secrets but in separate processes for isolation
     ota_cmd = [sys.executable, "-m", "uvicorn", "server.ota_server:app", "--host", OTA_SERVER_HOST, "--port", str(OTA_SERVER_PORT), "--loop", "asyncio"]
@@ -60,7 +71,7 @@ def run_server_node():
         # 128 bytes per chunk * 10 chunks = 1280 bytes
         firmware_data = b"\xef\xbe\xad\xde" * 320 
         
-        manifest, chunks = build_firmware_release(firmware_data, "v2.0.0", FACTORY_HSM, FACTORY_HMAC_SECRET)
+        manifest, chunks = build_firmware_release(firmware_data, "v2.0.0", 2, FACTORY_HSM, FACTORY_HMAC_SECRET)
         print(f"    - Merkle Root (HMAC): {manifest.merkle_root}")
         print(f"    - Ed25519 Verify Key: {FACTORY_HSM.get_public_key_fingerprint()}")
 
@@ -96,6 +107,17 @@ def run_vehicle_node():
         print("[!] ATTACKER MODULE ENABLED: Routing OTA through Kali MITM Pipeline")
         ecu.mitm_actor = MITMAttacker(target=ATTACK_TARGET)
         ecu.mitm_actor.abate_on_retry = os.environ.get("ABATE_ON_RETRY", "true").lower() == "true"
+
+        if os.environ.get("ROLLBACK_REPLAY", "false").lower() == "true":
+            # Build a genuinely-signed OLD manifest (v1.0.0 / build 1) for the
+            # attacker to replay in place of whatever the server currently
+            # serves. This is a freeze/rollback attack: no key compromise is
+            # needed, only replay of an authentic artifact the ECU has
+            # already moved past -- distinct from Demo 5's rogue/untrusted
+            # key scenario, where the signature itself fails to verify.
+            old_firmware = b"\xef\xbe\xad\xde" * 320
+            old_manifest, _ = build_firmware_release(old_firmware, "v1.0.0", 1, FACTORY_HSM, FACTORY_HMAC_SECRET)
+            ecu.mitm_actor.replay_manifest = old_manifest.model_dump()
 
     if FORCE_CVE:
         # We simulate the server providing an SBOM flagged config

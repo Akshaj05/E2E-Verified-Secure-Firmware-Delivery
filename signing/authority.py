@@ -16,20 +16,20 @@ class SigningAuthority:
     def __init__(self, hsm: SimulatedHSM):
         self.hsm = hsm
 
-    def construct_payload(self, version: str, merkle_root: str, sbom_hash: str) -> bytes:
+    def construct_payload(self, version: str, build_number: int, merkle_root: str, sbom_hash: str) -> bytes:
         """Creates the canonical string payload that is securely signed."""
-        return f"{version}||{merkle_root}||{sbom_hash}".encode('utf-8')
+        return f"{version}||{build_number}||{merkle_root}||{sbom_hash}".encode('utf-8')
 
-    def generate_manifest_signature(self, version: str, merkle_root: str, sbom_hash: str) -> str:
+    def generate_manifest_signature(self, version: str, build_number: int, merkle_root: str, sbom_hash: str) -> str:
         """Constructs the canonical payload and signs it using the secured HSM."""
-        payload = self.construct_payload(version, merkle_root, sbom_hash)
+        payload = self.construct_payload(version, build_number, merkle_root, sbom_hash)
         signature_bytes = self.hsm.sign(payload)
         return base64.b64encode(signature_bytes).decode('utf-8')
 
     @staticmethod
-    def verify_manifest_signature(public_key_bytes: bytes, version: str, merkle_root: str, sbom_hash: str, signature_b64: str) -> bool:
+    def verify_manifest_signature(public_key_bytes: bytes, version: str, build_number: int, merkle_root: str, sbom_hash: str, signature_b64: str) -> bool:
         """Static method used by ECU to verify a manifest signature standalone."""
-        payload = f"{version}||{merkle_root}||{sbom_hash}".encode('utf-8')
+        payload = f"{version}||{build_number}||{merkle_root}||{sbom_hash}".encode('utf-8')
         signature = base64.b64decode(signature_b64)
         
         try:
