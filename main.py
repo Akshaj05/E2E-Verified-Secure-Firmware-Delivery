@@ -14,21 +14,37 @@ from common.config import OTA_SERVER_PORT, OTA_SERVER_HOST, DASHBOARD_HOST, DASH
 from common.models import UpdateRequest
 from build_pipeline.builder import build_firmware_release
 from key_management.hsm import SimulatedHSM
+from signing.authority import SigningAuthority, compute_image_digest
 from vehicle.gateway_ecu import GatewayECU
 from attacker.mitm import MITMAttacker
 
 # main.py is the Orchestrator entry point for OTA server or vehicle runtime.
 # In production, HMAC Keys and Server Certificates are securely provisioned out-of-band.
 
-# Global simulated factory secrets for demo
+# Global simulated factory secrets for demo.
+#
+# Two independent signing roles (see signing/authority.py for the full
+# rationale): IMAGE_HSM represents the offline build-pipeline key -- this
+# process (and the vehicle ECU, for pinning) holds it, but the network-facing
+# OTA server never does. DIRECTOR_HSM_SEED represents the online fleet
+# service's key; it's handed to the ota_server subprocess via an environment
+# variable (below) rather than hardcoded there, since that process plays the
+# role that's actually exposed to the network.
 FACTORY_HMAC_SECRET = b"super_secret_hmac_key_for_all_ecu"
-FACTORY_HSM = SimulatedHSM(seed=b"deterministic_hsm_seed_for_multi_proc") 
-PINNED_SERVER_PUB_CERT = FACTORY_HSM.get_public_key_bytes()
+IMAGE_HSM = SimulatedHSM(seed=b"deterministic_image_hsm_seed_offline_oem_key")
+PINNED_IMAGE_PUB_CERT = IMAGE_HSM.get_public_key_bytes()
+DIRECTOR_HSM_SEED = b"deterministic_director_hsm_seed_online_fleet_key"
+PINNED_DIRECTOR_PUB_CERT = SimulatedHSM(seed=DIRECTOR_HSM_SEED).get_public_key_bytes()
 
 def run_server_node():
     print(f"[*] Starting OTA Server & Dashboard on {OTA_SERVER_HOST}...")
     env = os.environ.copy()
-    
+    # The OTA server plays the Director role and needs to sign per-device
+    # instructions itself; hand it the seed via env rather than hardcoding it
+    # in server/ota_server.py, since that's the process actually exposed to
+    # the network.
+    env["DIRECTOR_HSM_SEED_B64"] = base64.b64encode(DIRECTOR_HSM_SEED).decode("utf-8")
+
     # Fallback safety net only: callers (demo scripts) now use
     # common.proc.kill_process_tree() to clean up the whole process tree on
     # exit instead of relying on this. Kept in case something outside this
@@ -71,9 +87,9 @@ def run_server_node():
         # 128 bytes per chunk * 10 chunks = 1280 bytes
         firmware_data = b"\xef\xbe\xad\xde" * 320 
         
-        manifest, chunks = build_firmware_release(firmware_data, "v2.0.0", 2, FACTORY_HSM, FACTORY_HMAC_SECRET)
+        manifest, chunks = build_firmware_release(firmware_data, "v2.0.0", 2, IMAGE_HSM, FACTORY_HMAC_SECRET)
         print(f"    - Merkle Root (HMAC): {manifest.merkle_root}")
-        print(f"    - Ed25519 Verify Key: {FACTORY_HSM.get_public_key_fingerprint()}")
+        print(f"    - Image Ed25519 Verify Key: {IMAGE_HSM.get_public_key_fingerprint()}")
 
         print("\n[+] Publishing Firmware to Distribution Server...")
         #chunks_b64 is responsible for encoding binary chunks into base64 strings so that they can be safely transmitted in JSON format over HTTP
@@ -97,11 +113,11 @@ def run_vehicle_node():
     ROGUE_HSM = os.environ.get("ROGUE_HSM", "false").lower() == "true"
     FORCE_CVE = os.environ.get("FORCE_CVE", "false").lower() == "true"
     
-    pinned_key = PINNED_SERVER_PUB_CERT
+    pinned_image_key = PINNED_IMAGE_PUB_CERT
     if ROGUE_HSM:
-        pinned_key = SimulatedHSM().get_public_key_bytes() # Random rogue key
-        
-    ecu = GatewayECU("VEH-1", f"http://{OTA_SERVER_HOST}:{OTA_SERVER_PORT}", pinned_key, FACTORY_HMAC_SECRET)
+        pinned_image_key = SimulatedHSM().get_public_key_bytes() # Random rogue key
+
+    ecu = GatewayECU("VEH-1", f"http://{OTA_SERVER_HOST}:{OTA_SERVER_PORT}", pinned_image_key, PINNED_DIRECTOR_PUB_CERT, FACTORY_HMAC_SECRET)
 
     if ATTACK_ENABLED:
         print("[!] ATTACKER MODULE ENABLED: Routing OTA through Kali MITM Pipeline")
@@ -116,8 +132,43 @@ def run_vehicle_node():
             # already moved past -- distinct from Demo 5's rogue/untrusted
             # key scenario, where the signature itself fails to verify.
             old_firmware = b"\xef\xbe\xad\xde" * 320
-            old_manifest, _ = build_firmware_release(old_firmware, "v1.0.0", 1, FACTORY_HSM, FACTORY_HMAC_SECRET)
-            ecu.mitm_actor.replay_manifest = old_manifest.model_dump()
+            old_manifest, _ = build_firmware_release(old_firmware, "v1.0.0", 1, IMAGE_HSM, FACTORY_HMAC_SECRET)
+            old_digest = compute_image_digest(old_manifest.version, old_manifest.build_number, old_manifest.merkle_root, old_manifest.sbom_hash)
+            replay_director_sig = SigningAuthority(SimulatedHSM(seed=DIRECTOR_HSM_SEED)).generate_director_signature(
+                "VEH-1", old_manifest.version, old_manifest.build_number, old_digest
+            )
+            ecu.mitm_actor.replay_manifest = {
+                "image_metadata": old_manifest.model_dump(),
+                "director_instruction": {
+                    "device_id": "VEH-1", "version": old_manifest.version, "build_number": old_manifest.build_number,
+                    "image_digest": old_digest, "director_signature": replay_director_sig,
+                }
+            }
+
+        if os.environ.get("COMPROMISED_DIRECTOR", "false").lower() == "true":
+            # Attacker has stolen/compromised the DIRECTOR key but NOT the
+            # separately-held, offline IMAGE key. They can produce a validly
+            # signed DirectorInstruction for anything they want, but cannot
+            # forge a valid Image signature for fabricated firmware content.
+            # This is the scenario the two-role split exists for: Demo 5
+            # simulates the whole trust chain being wrong; this simulates
+            # ONLY the online role being compromised, which alone must not
+            # be enough to install arbitrary code.
+            stolen_director_authority = SigningAuthority(SimulatedHSM(seed=DIRECTOR_HSM_SEED))
+            rogue_image_hsm = SimulatedHSM()  # attacker does NOT have the real Image key
+            fake_firmware = b"\x90\x90\x90\x90" * 320  # attacker-fabricated payload
+            fake_manifest, _ = build_firmware_release(fake_firmware, "v9.9.9", 999, rogue_image_hsm, FACTORY_HMAC_SECRET)
+            fake_digest = compute_image_digest(fake_manifest.version, fake_manifest.build_number, fake_manifest.merkle_root, fake_manifest.sbom_hash)
+            forged_director_sig = stolen_director_authority.generate_director_signature(
+                "VEH-1", fake_manifest.version, fake_manifest.build_number, fake_digest
+            )
+            ecu.mitm_actor.forged_bundle = {
+                "image_metadata": fake_manifest.model_dump(),
+                "director_instruction": {
+                    "device_id": "VEH-1", "version": fake_manifest.version, "build_number": fake_manifest.build_number,
+                    "image_digest": fake_digest, "director_signature": forged_director_sig,
+                }
+            }
 
     if FORCE_CVE:
         # We simulate the server providing an SBOM flagged config

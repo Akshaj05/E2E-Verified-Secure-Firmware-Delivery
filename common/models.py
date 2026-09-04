@@ -24,6 +24,19 @@ class Manifest(BaseModel):
     sbom_hash: str
     metadata_signature: str
 
+# DirectorInstruction is the per-device "install this image now" order issued
+# dynamically by the OTA server's Director role, signed with a key
+# independent of the Image role that signed the Manifest above. The ECU must
+# verify both signatures, plus that image_digest actually identifies the
+# Manifest it received (see gateway_ecu.py) -- a compromised Director alone
+# can point a vehicle at nothing but images the Image role already signed.
+class DirectorInstruction(BaseModel):
+    device_id: str
+    version: str
+    build_number: int
+    image_digest: str
+    director_signature: str
+
 # UpdateRequest defines the structure of the OTA update request sent by the vehicle to the server
 class UpdateRequest(BaseModel):
     device_id: str

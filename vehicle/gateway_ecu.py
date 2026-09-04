@@ -1,7 +1,7 @@
 import requests
 from common.logger import SecurityLogger
-from common.models import Manifest
-from signing.authority import SigningAuthority
+from common.models import Manifest, DirectorInstruction
+from signing.authority import SigningAuthority, compute_image_digest
 from merkle.tree import MerkleTreeBuilder
 from vehicle.chunk_manager import ChunkManager
 from vehicle.installer import ECUInstaller
@@ -14,25 +14,30 @@ import sys
 
 # ---------------------------------------------------------
 # SECURITY RATIONALE:
-# The Gateway ECU acts as the primary validation boundary.
-# 1. It validates the TLS/Cert pinning (conceptually).
-# 2. It fetches the Manifest and validates the Ed25519 signature.
-# 3. It orchestrates the chunk fetching.
-# 4. It passes verified payloads to the Installer.
+# The Gateway ECU acts as the primary validation boundary. It trusts two
+# INDEPENDENT roots of trust, not one (see signing/authority.py):
+#   - the Director's signature authorizes "install this for THIS vehicle now"
+#   - the Image role's signature authorizes "this firmware content is legitimate"
+# Both must verify, AND the Director's image_digest must match the Image
+# content it claims to point at, before any chunk is even fetched. A
+# compromised Director (the online, network-facing role) cannot satisfy the
+# Image check on its own -- see the COMPROMISED_DIRECTOR path in main.py /
+# Demo 8.
 # ---------------------------------------------------------
 
 class GatewayECU:
-    def __init__(self, device_id: str, server_url: str, pinned_pub_key: bytes, hmac_secret: bytes):
+    def __init__(self, device_id: str, server_url: str, pinned_image_pub_key: bytes, pinned_director_pub_key: bytes, hmac_secret: bytes):
         self.device_id = device_id
         self.server = server_url
-        self.pinned_pub = pinned_pub_key
+        self.pinned_image_pub = pinned_image_pub_key
+        self.pinned_director_pub = pinned_director_pub_key
         self.hmac_secret = hmac_secret
         self.logger = SecurityLogger(f"gateway_ecu_{device_id}")
         self.installer = ECUInstaller(device_id, self.logger)
-        
+
         # Test hook for MITM
         self.mitm_actor = None
-        
+
         # Performance metrics collector
         self.perf = {}
 
@@ -50,61 +55,112 @@ class GatewayECU:
         crypto_start = time.perf_counter()
         self.logger.info(f"ECDH session securely established between OTA Server and {self.device_id}", event_type="ecdh_session_established", device_id=self.device_id)
 
-        # 1. Fetch Manifest — retry up to 5x to handle server startup race condition
+        # 1. Fetch the Director instruction + the Image metadata it points at
+        # — retry up to 5x to handle server startup race condition
         try:
-            manifest_data = None
+            bundle = None
             for attempt in range(5):
-                res = requests.get(f"{self.server}/manifest", timeout=5)
+                res = requests.get(f"{self.server}/manifest", params={"device_id": self.device_id}, timeout=5)
                 if res.status_code == 200:
-                    manifest_data = res.json()
+                    bundle = res.json()
                     break
                 self.logger.info(f"Manifest not ready (attempt {attempt+1}/5), retrying in 2s...", device_id=self.device_id)
                 time.sleep(2)
 
-            if manifest_data is None:
+            if bundle is None:
                 self.logger.error("Failed to fetch manifest after 5 attempts. OTA server may be starting up.")
                 return
-            
+
             if self.mitm_actor:
-                manifest_data = self.mitm_actor.intercept_manifest(manifest_data)
-                
+                bundle = self.mitm_actor.intercept_manifest(bundle)
+
+            manifest_data = bundle["image_metadata"]
             manifest = Manifest(**manifest_data)
+            director = DirectorInstruction(**bundle["director_instruction"])
         except Exception as e:
             self.logger.error(f"Network error reaching OTA Server: {e}")
             return
 
-        # 2. Cryptographic Zone Step 2: Ed25519 Signature Verification
-        # Verifies the origin of the manifest (protects against rogue servers & manifest replacement)
-        is_valid = SigningAuthority.verify_manifest_signature(
-            self.pinned_pub,
-            manifest.version,
-            manifest.build_number,
-            manifest.merkle_root,
-            manifest.sbom_hash,
-            manifest.metadata_signature
+        # 2. Director Signature Verification — authorizes "install this for
+        # THIS vehicle, right now". Protects against a manifest meant for a
+        # different device being misapplied, and (with step 2b below) is
+        # only half of what's needed to authorize new firmware content.
+        director_valid = (
+            SigningAuthority.verify_director_signature(
+                self.pinned_director_pub, director.device_id, director.version,
+                director.build_number, director.image_digest, director.director_signature
+            )
+            and director.device_id == self.device_id
         )
         crypto_end = time.perf_counter()
         self.perf["crypto_handshake_latency_ms"] = round((crypto_end - crypto_start) * 1000, 2)
         # ---- END PERF ----
 
-        if not is_valid:
-            # ---- PERF: Threat Mitigation Latency ----
+        if not director_valid:
             threat_detect_time = time.perf_counter_ns()
-            self.logger.critical("MANIFEST SIGNATURE VERIFICATION FAILED. Origin untrusted or payload tampered.", event_type="signature_failure", device_id=self.device_id)
+            self.logger.critical("DIRECTOR SIGNATURE VERIFICATION FAILED. Fleet instruction untrusted, tampered, or misdirected.", event_type="director_signature_failure", device_id=self.device_id)
             time.sleep(0.5)
             rollback_start = time.perf_counter()
-            self.installer.rollback(reason="SIGNATURE_VERIFICATION_FAILURE")
+            self.installer.rollback(reason="DIRECTOR_SIGNATURE_VERIFICATION_FAILURE")
             rollback_end = time.perf_counter()
             self.perf["rollback_execution_time_ms"] = round((rollback_end - rollback_start) * 1000, 2)
             threat_halt_time = time.perf_counter_ns()
             self.perf["threat_mitigation_latency_us"] = round((threat_halt_time - threat_detect_time) / 1000, 2)
-            # ---- END PERF ----
             time.sleep(0.5)
             self.logger.critical("UPDATE ABORTED — Rolling back to Golden Image v1.0.0. ECU integrity preserved.", event_type="update_abort", device_id=self.device_id)
             self._emit_perf_report(workflow_start)
             return
 
-        # 2b. Rollback / Freeze-Attack Protection
+        self.logger.info("Director instruction verified — authorized to install this image now.", event_type="director_verified", device_id=self.device_id)
+
+        # 2a. Image Signature Verification — independent of the Director key.
+        # This is the check that stops a compromised Director (Demo 8) from
+        # pushing arbitrary firmware: it can authorize installation all it
+        # wants, but it cannot forge a signature for content the offline
+        # Image role never signed.
+        image_valid = SigningAuthority.verify_manifest_signature(
+            self.pinned_image_pub, manifest.version, manifest.build_number,
+            manifest.merkle_root, manifest.sbom_hash, manifest.metadata_signature
+        )
+        if not image_valid:
+            threat_detect_time = time.perf_counter_ns()
+            self.logger.critical(
+                "IMAGE SIGNATURE VERIFICATION FAILED. Director authorization was valid, but this firmware "
+                "was never signed by the legitimate build pipeline. Rejecting despite valid Director signature.",
+                event_type="image_signature_failure", device_id=self.device_id
+            )
+            time.sleep(0.5)
+            rollback_start = time.perf_counter()
+            self.installer.rollback(reason="IMAGE_SIGNATURE_VERIFICATION_FAILURE")
+            rollback_end = time.perf_counter()
+            self.perf["rollback_execution_time_ms"] = round((rollback_end - rollback_start) * 1000, 2)
+            threat_halt_time = time.perf_counter_ns()
+            self.perf["threat_mitigation_latency_us"] = round((threat_halt_time - threat_detect_time) / 1000, 2)
+            time.sleep(0.5)
+            self.logger.critical("UPDATE ABORTED — Rolling back to Golden Image v1.0.0. ECU integrity preserved.", event_type="update_abort", device_id=self.device_id)
+            self._emit_perf_report(workflow_start)
+            return
+
+        # 2b. Director <-> Image binding — the Director must be pointing at
+        # THIS exact image, not mixing a valid Director signature with
+        # different declared Image content.
+        expected_digest = compute_image_digest(manifest.version, manifest.build_number, manifest.merkle_root, manifest.sbom_hash)
+        if director.image_digest != expected_digest:
+            threat_detect_time = time.perf_counter_ns()
+            self.logger.critical(
+                "DIRECTOR/IMAGE BINDING MISMATCH — the authorized image_digest does not match the Image "
+                "metadata received. Rejecting.", event_type="director_image_mismatch", device_id=self.device_id
+            )
+            rollback_start = time.perf_counter()
+            self.installer.rollback(reason="DIRECTOR_IMAGE_MISMATCH")
+            rollback_end = time.perf_counter()
+            self.perf["rollback_execution_time_ms"] = round((rollback_end - rollback_start) * 1000, 2)
+            threat_halt_time = time.perf_counter_ns()
+            self.perf["threat_mitigation_latency_us"] = round((threat_halt_time - threat_detect_time) / 1000, 2)
+            self._emit_perf_report(workflow_start)
+            return
+
+        # 2c. Rollback / Freeze-Attack Protection
         # A signature check alone doesn't stop an attacker from replaying an
         # OLD manifest that was validly signed at the time -- it still passes
         # step 2 above. Comparing against the last build actually installed

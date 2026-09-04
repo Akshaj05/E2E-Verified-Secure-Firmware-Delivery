@@ -16,10 +16,17 @@ class MITMAttacker:
         self.target = target
         self.corruption_type = corruption_type
         # When set (target == "manifest"), intercept_manifest() substitutes
-        # this pre-built, VALIDLY-signed old manifest instead of tampering
-        # the live one -- simulates a rollback/freeze attack, which requires
-        # no key compromise, only replaying an authentic older artifact.
+        # this pre-built, VALIDLY-signed old manifest+director bundle instead
+        # of tampering the live one -- simulates a rollback/freeze attack,
+        # which requires no key compromise, only replaying an authentic
+        # older artifact.
         self.replay_manifest = None
+        # When set (target == "manifest"), takes priority over replay_manifest:
+        # a bundle with a validly Director-signed instruction pointing at
+        # Image content that was NOT signed by the real Image key. Simulates
+        # a compromised Director role alone trying (and failing) to push
+        # arbitrary firmware.
+        self.forged_bundle = None
         # main.py sets this post-construction from ABATE_ON_RETRY. Default
         # True so a bare MITMAttacker() still demonstrates recovery.
         self.abate_on_retry = True
@@ -49,14 +56,20 @@ class MITMAttacker:
                 
         return original_data
 
-    def intercept_manifest(self, original_manifest: dict) -> dict:
+    def intercept_manifest(self, original_bundle: dict) -> dict:
         if self.target == "manifest":
+            if self.forged_bundle is not None:
+                self.logger.warning(
+                    "MITM Attack: Director role compromised — issuing a validly-signed instruction "
+                    "pointing at firmware that was NEVER signed by the real Image key!", event_type="attack_active"
+                )
+                return self.forged_bundle
             if self.replay_manifest is not None:
                 self.logger.warning(
-                    "MITM Attack: Replaying an old, VALIDLY-SIGNED manifest to force a downgrade "
-                    "(rollback/freeze attack — no key compromise required)!", event_type="attack_active"
+                    "MITM Attack: Replaying an old, VALIDLY-SIGNED manifest+instruction bundle to force "
+                    "a downgrade (rollback/freeze attack — no key compromise required)!", event_type="attack_active"
                 )
                 return self.replay_manifest
-            self.logger.warning("MITM Attack: Spoofing manifest version string (unsigned field tamper).", event_type="attack_active")
-            original_manifest["version"] = "v99.9.9" # Spoofed field won't match the signed payload
-        return original_manifest
+            self.logger.warning("MITM Attack: Spoofing director_instruction version (unsigned field tamper).", event_type="attack_active")
+            original_bundle["director_instruction"]["version"] = "v99.9.9" # Won't match the signed payload
+        return original_bundle

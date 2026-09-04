@@ -23,6 +23,7 @@ ALLOWED_DEMO_SCRIPTS = {
     "demo_5_rogue_hsm.py",
     "demo_6_sbom_cve.py",
     "demo_7_rollback.py",
+    "demo_8_compromised_director.py",
 }
 
 logs = []
