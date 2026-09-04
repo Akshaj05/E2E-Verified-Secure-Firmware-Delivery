@@ -144,7 +144,7 @@ class ChunkManager:
 
                 if not chunk_valid:
                     # Exact prompt match Scenario 3: CHUNK_FAIL
-                    self.logger.error(f"CHUNK_FAIL — chunk_id: {i} — SHA3-256 mismatch detected", event_type="chunk_corrupted", chunk_id=i)
+                    self.logger.error(f"CHUNK_FAIL — chunk_id: {i} — HMAC-SHA256 mismatch detected", event_type="chunk_corrupted", chunk_id=i)
                     self.chunk_states[i] = ChunkState.CORRUPTED
                     self.retry_counts[i] += 1
                     corrupted_count += 1
