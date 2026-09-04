@@ -207,14 +207,19 @@ class GatewayECU:
         # 5. Install Zone
         # ---- PERF: I/O Throughput ----
         io_start = time.perf_counter()
-        self.installer.execute_install(manifest.version, vehicle_state, validated_payload)
+        installed = self.installer.execute_install(manifest.version, vehicle_state, validated_payload)
         io_end = time.perf_counter()
         io_duration = io_end - io_start
         if io_duration > 0:
             throughput = (firmware_size / (1024 * 1024)) / io_duration
             self.perf["io_throughput_mbps"] = round(throughput, 2)
         # ---- END PERF ----
-        
+
+        if not installed:
+            # Safety interlock blocked the flash (battery/engine/gear). Nothing was
+            # written, so there's nothing to roll back — just abort the workflow.
+            self.logger.critical("UPDATE ABORTED — Safety interlocks not satisfied.", event_type="update_abort", device_id=self.device_id)
+
         self._emit_perf_report(workflow_start)
 
     def _emit_perf_report(self, workflow_start: float):

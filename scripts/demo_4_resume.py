@@ -4,6 +4,7 @@ import time
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from common.proc import popen_detachable, kill_process_tree
 
 def run_demo():
     print("=============================================")
@@ -12,8 +13,8 @@ def run_demo():
     
     env = os.environ.copy()
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    server_process = subprocess.Popen([sys.executable, "main.py", "--server"], env=env, cwd=root_dir)
-    time.sleep(10) 
+    server_process = popen_detachable([sys.executable, "main.py", "--server"], env=env, cwd=root_dir)
+    time.sleep(10)
 
     try:
         env_attack = env.copy()
@@ -28,7 +29,7 @@ def run_demo():
         print("\n[*] Second run: Network restored. Booting ECU to resume...")
         subprocess.run([sys.executable, "main.py", "--vehicle"], env=env, cwd=root_dir)
     finally:
-        server_process.terminate()
+        kill_process_tree(server_process)
 
 if __name__ == "__main__":
     run_demo()

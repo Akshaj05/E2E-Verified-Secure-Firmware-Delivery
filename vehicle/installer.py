@@ -20,15 +20,23 @@ class ECUInstaller:
 
     def execute_install(self, target_version: str, state: UpdateRequest, payload: bytes = None) -> bool:
         """
-        Safety constraints:
+        Safety constraints (all must hold before flashing):
+        - state.battery_level MUST be >= 50
         - state.engine_state MUST be IDLE
-        - state.battery_level MUST be >= 70
         - state.gear_state MUST be PARK
         """
         self.logger.info("Evaluating safety interlocks for install...", device_id=self.device_id)
 
         if state.battery_level < 50.0:
             self.logger.warning("Installation blocked: Battery below 50%", event_type="safety_block", device_id=self.device_id)
+            return False
+
+        if state.engine_state != "IDLE":
+            self.logger.warning(f"Installation blocked: Engine state is {state.engine_state}, must be IDLE", event_type="safety_block", device_id=self.device_id)
+            return False
+
+        if state.gear_state != "PARK":
+            self.logger.warning(f"Installation blocked: Gear state is {state.gear_state}, must be PARK", event_type="safety_block", device_id=self.device_id)
             return False
 
         # Simulate Flash Write

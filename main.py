@@ -28,7 +28,11 @@ def run_server_node():
     print(f"[*] Starting OTA Server & Dashboard on {OTA_SERVER_HOST}...")
     env = os.environ.copy()
     
-    # Kill any zombie processes holding ports from previous runs (Windows Errno 10048 fix)
+    # Fallback safety net only: callers (demo scripts) now use
+    # common.proc.kill_process_tree() to clean up the whole process tree on
+    # exit instead of relying on this. Kept in case something outside this
+    # project's own scripts (e.g. Ctrl+C during manual `--server` use) leaves
+    # a port bound from a previous run.
     for port in [OTA_SERVER_PORT, DASHBOARD_PORT]:
         try:
             subprocess.run(
