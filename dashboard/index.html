@@ -1029,6 +1029,8 @@
             while (uiQueue.length > 0) {
                 const log = uiQueue.shift();
 
+                // levelClass/event_type come from server-controlled log levels/event
+                // names (not free text), so they're safe to use as class tokens.
                 const levelClass = log.level || 'INFO';
                 const div = document.createElement('div');
                 div.className = `log-item level-${levelClass} ${log.event_type || ''}`;
@@ -1040,15 +1042,26 @@
                     } catch (e) { }
                 }
 
+                // Build structure with innerHTML, but never interpolate untrusted
+                // fields (message/logger/device_id) directly into markup — set
+                // them afterward via textContent so HTML in a log payload can't
+                // execute (stored XSS via /ingest).
                 div.innerHTML = `
                     <div class="log-meta">
                         <span class="badge ${levelClass}">${levelClass}</span>
                         <span>${timeStr}</span>
-                        <span>[${log.logger || 'system'}]</span>
-                        ${log.device_id ? `<span>(${log.device_id})</span>` : ''}
+                        <span class="log-logger"></span>
+                        <span class="log-device" style="display:none"></span>
                     </div>
-                    <div class="log-message">${log.message || JSON.stringify(log)}</div>
+                    <div class="log-message"></div>
                 `;
+                div.querySelector('.log-logger').textContent = `[${log.logger || 'system'}]`;
+                if (log.device_id) {
+                    const deviceEl = div.querySelector('.log-device');
+                    deviceEl.textContent = `(${log.device_id})`;
+                    deviceEl.style.display = '';
+                }
+                div.querySelector('.log-message').textContent = log.message || JSON.stringify(log);
 
                 container.insertBefore(div, container.firstChild);
                 processLogEvent(log);

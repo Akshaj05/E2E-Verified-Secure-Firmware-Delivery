@@ -9,7 +9,7 @@ import time
 # Ensure imports work dynamically
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from common.config import OTA_SERVER_PORT, OTA_SERVER_HOST, ATTACK_ENABLED, ATTACK_TARGET
+from common.config import OTA_SERVER_PORT, OTA_SERVER_HOST, DASHBOARD_HOST, DASHBOARD_PORT, ATTACK_ENABLED, ATTACK_TARGET
 from common.models import UpdateRequest
 from build_pipeline.builder import build_firmware_release
 from key_management.hsm import SimulatedHSM
@@ -29,7 +29,7 @@ def run_server_node():
     env = os.environ.copy()
     
     # Kill any zombie processes holding ports from previous runs (Windows Errno 10048 fix)
-    for port in [OTA_SERVER_PORT, 7001]:
+    for port in [OTA_SERVER_PORT, DASHBOARD_PORT]:
         try:
             subprocess.run(
                 ["powershell", "-Command", 
@@ -43,7 +43,7 @@ def run_server_node():
     #run via uvicorn or pipeline
     #we do this to ensure the server and dashboard run in the same environment with the same secrets but in separate processes for isolation
     ota_cmd = [sys.executable, "-m", "uvicorn", "server.ota_server:app", "--host", OTA_SERVER_HOST, "--port", str(OTA_SERVER_PORT), "--loop", "asyncio"]
-    dash_cmd = [sys.executable, "-m", "uvicorn", "dashboard.app:app", "--host", "0.0.0.0", "--port", "7001", "--loop", "asyncio"]
+    dash_cmd = [sys.executable, "-m", "uvicorn", "dashboard.app:app", "--host", DASHBOARD_HOST, "--port", str(DASHBOARD_PORT), "--loop", "asyncio"]
     
     ota_p = subprocess.Popen(ota_cmd, env=env)
     dash_p = subprocess.Popen(dash_cmd, env=env)

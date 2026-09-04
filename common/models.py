@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import List, Optional
 
 # Pydantic is used for strict runtime type enforcement.
@@ -22,7 +22,11 @@ class UpdateRequest(BaseModel):
     gear_state: str
 
 # SecurityEvent defines the structure of the logs that will be emitted by the SecurityLogger.
+# extra="allow" because SecurityLogger.log() attaches free-form telemetry kwargs
+# (chunk_id, perf_data, cve_meta, ...) on top of the core fields below.
 class SecurityEvent(BaseModel):
+    model_config = ConfigDict(extra="allow")
+
     timestamp: str
     level: str
     logger: str
